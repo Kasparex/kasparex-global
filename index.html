@@ -10,9 +10,9 @@
 <body>
   <div class="container">
     <h1>Kasparex Prompt Generator</h1>
-    <textarea id="prompt" placeholder="Enter your dApp idea here...">Create a simple dApp that shows a sample Kaspa balance using public API</textarea>
+    <textarea id="prompt" placeholder="Enter your dApp idea here...">Create a dApp that displays KRC-20 token balances for a wallet</textarea>
     <button onclick="generateCode()">Generate dApp</button>
-    <div id="output"></div>
+    <div id="output-box"><iframe id="output-frame" sandbox="allow-scripts allow-same-origin"></iframe></div>
   </div>
 </body>
 </html>
