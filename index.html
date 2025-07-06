@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kasparex Prompt Generator</title>
-  <link rel="stylesheet" href="kasparex-style.css">
+  <link rel="stylesheet" href="kasparex-style.css" />
   <script defer src="kasparex-init.js"></script>
 </head>
 <body>
@@ -13,14 +12,12 @@
     <h1>Kasparex Prompt Generator</h1>
     <textarea id="prompt" placeholder="Enter your dApp idea here...">Create a dApp that displays KRC-20 token balances for a wallet</textarea>
     <button onclick="generateCode()">Generate dApp</button>
-    <div id="output-wrapper">
-      <iframe id="output-frame" sandbox="allow-scripts allow-same-origin"></iframe>
-    </div>
-    <div class="embed-panel">
-      <h2>Embed This dApp</h2>
-      <input type="text" id="embed-code" readonly />
-      <button onclick="copyEmbed()">Copy Embed Code</button>
-    </div>
+
+    <div id="preview" class="card"></div>
+
+    <h2>Embed This dApp</h2>
+    <input id="embedCode" type="text" readonly />
+    <button onclick="copyEmbedCode()">Copy Embed Code</button>
   </div>
 </body>
 </html>
