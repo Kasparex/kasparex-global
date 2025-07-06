@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Fetches the dApp code from the API based on the user's prompt.
    */
+  // (This is not the full file, just find the generateCode function and replace it)
+
   const generateCode = async () => {
     const userPrompt = promptInput.value.trim();
     if (!userPrompt) {
@@ -48,33 +50,39 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({ userPrompt }),
       });
 
+      // --- IMPROVED ERROR HANDLING ---
       if (!response.ok) {
-        // Handle HTTP errors like 404 or 500
-        throw new Error(`API Error: ${response.status} ${response.statusText}`);
+        // The server returned an error (like 400 or 500).
+        // Try to get the specific error message from the server's response body.
+        const errorData = await response.json().catch(() => ({})); // Gracefully handle if the response isn't JSON
+        const errorMessage = errorData.error || `Request failed with status ${response.status}`;
+        throw new Error(errorMessage);
       }
 
       const data = await response.json();
+      const cleanCode = data.code; // The code is already cleaned by the backend now
 
-      // Clean the code by removing markdown fences (```html and ```)
-      const cleanCode = data.code.replace(/^```html\s*|```\s*$/g, "").trim();
-
-      // Create a blob URL to securely display the generated code in an iframe
       const blob = new Blob([cleanCode], { type: "text/html" });
       const url = URL.createObjectURL(blob);
 
-      // Update the iframe source
       outputFrame.src = url;
 
-      // Generate and display the embeddable code snippet
       const embedCode = `<iframe src="${url}" width="100%" height="400" sandbox="allow-scripts allow-same-origin" style="border:1px solid #e2e8f0;border-radius:12px;"></iframe>`;
       embedCodeInput.value = embedCode;
 
     } catch (error) {
       console.error("Failed to generate dApp:", error);
-      // Display a user-friendly error message in the iframe
-      const errorHTML = `<html><body style="font-family: sans-serif; color: #cc0000; text-align: center; padding: 2rem;"><h2>Generation Failed</h2><p>${error.message}</p></body></html>`;
+      
+      // --- Display the detailed error message in the iframe ---
+      const errorHTML = `
+        <html>
+          <body style="font-family: 'Inter', sans-serif; color: #c53030; text-align: center; padding: 2rem; background-color: #fff5f5;">
+            <h2 style="margin-bottom: 0.5rem;">Generation Failed</h2>
+            <p style="font-size: 0.9rem; max-width: 90%; margin: auto;">${error.message}</p>
+          </body>
+        </html>`;
       outputFrame.src = 'data:text/html;charset=utf-8,' + encodeURIComponent(errorHTML);
-      embedCodeInput.value = 'Generation failed. Please try again.';
+      embedCodeInput.value = 'Generation failed. Please check the error above and try again.';
     } finally {
       setLoadingState(false);
     }
