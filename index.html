@@ -1,69 +1,20 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kasparex Prompt Generator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #f5f5f5;
-    }
-    textarea {
-      width: 100%;
-      height: 120px;
-      padding: 10px;
-      font-size: 16px;
-    }
-    button {
-      background: #0097b2;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin-top: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    iframe {
-      width: 100%;
-      height: 500px;
-      border: 1px solid #ccc;
-      margin-top: 20px;
-      background: white;
-    }
-  </style>
+  <link rel="stylesheet" href="kasparex-style.css" />
+  <script defer src="kasparex-init.js"></script>
 </head>
 <body>
-  <h2>Kasparex Prompt Generator</h2>
-  <textarea id="prompt" placeholder="Type your prompt here..."></textarea>
-  <br />
-  <button onclick="generate()">Generate dApp</button>
-
-  <iframe id="result"></iframe>
-
-  <script>
-    async function generate() {
-      const userPrompt = document.getElementById("prompt").value;
-      const res = await fetch("https://kasparex-global.onrender.com/api/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Auth-Token": "kasparex-secure-token"
-        },
-        body: JSON.stringify({ userPrompt })
-      });
-
-      const data = await res.json();
-      if (data.code) {
-        const blob = new Blob([data.code], { type: "text/html" });
-        const url = URL.createObjectURL(blob);
-        document.getElementById("result").src = url;
-      } else {
-        document.getElementById("result").srcdoc = "<h3>Failed to load content.</h3>";
-      }
-    }
-  </script>
+  <div class="container">
+    <h1>Kasparex Prompt Generator</h1>
+    <textarea id="prompt" placeholder="Enter your dApp idea here...">Create a dApp that displays KRC-20 token balances for a wallet</textarea>
+    <button onclick="generateCode()">Generate dApp</button>
+    <div id="output"></div>
+  </div>
 </body>
 </html>
+    
