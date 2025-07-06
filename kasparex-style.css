@@ -40,12 +40,6 @@ body {
   margin-bottom: 2rem;
 }
 
-.widget-header .logo {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 1rem;
-}
-
 .widget-header h1 {
   font-size: 1.75rem;
   margin: 0 0 0.5rem 0;
