@@ -1,33 +1,25 @@
-
-async function generateCode() {
+function generateCode() {
   const prompt = document.getElementById("prompt").value;
-  const outputDiv = document.getElementById("output");
-  outputDiv.innerHTML = "⏳ Generating...";
 
-  try {
-    const res = await fetch("https://kasparex-global.onrender.com/api/generate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ userPrompt: prompt })
+  fetch("https://kasparex-global.onrender.com/api/generate", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ userPrompt: prompt })
+  })
+    .then(res => res.json())
+    .then(data => {
+      // ✂️ Remove code block formatting like ```html
+      const cleanCode = data.code
+        .replace(/^```html\s*/i, "")
+        .replace(/```$/, "");
+
+      // 🧼 Security tip: prevent scripts from executing
+      const output = document.getElementById("output");
+      output.innerHTML = `<iframe style="width:100%;height:500px;border:none;" sandbox="allow-same-origin allow-scripts" srcdoc="${cleanCode.replace(/"/g, '&quot;')}"></iframe>`;
+    })
+    .catch(err => {
+      document.getElementById("output").innerHTML = `Error: ${err.message}`;
     });
-
-    const data = await res.json();
-
-    let code = data.code || "";
-
-    // Remove backtick formatting if present
-    if (code.startsWith("```html")) code = code.slice(7);
-    if (code.endsWith("```")) code = code.slice(0, -3);
-
-    // Display in iframe
-    const blob = new Blob([code], { type: "text/html" });
-    const url = URL.createObjectURL(blob);
-    outputDiv.innerHTML = `<iframe src="\${url}"></iframe>`;
-  } catch (err) {
-    outputDiv.innerHTML = "❌ Error generating code.";
-    console.error(err);
-  }
 }
-    
