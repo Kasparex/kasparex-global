@@ -11,14 +11,15 @@
   <div class="container">
     <h1>Kasparex Prompt Generator</h1>
     <textarea id="prompt" placeholder="Enter your dApp idea here...">Create a dApp that displays KRC-20 token balances for a wallet</textarea>
-    <button onclick="generateCode()">Generate dApp</button>
-    <div id="loading" class="loading">Loading...</div>
-    <div id="output" class="output-panel"></div>
-
-    <div class="embed-container">
+    <button id="generateBtn">Generate dApp</button>
+    <p id="status" class="status"></p>
+    <div id="outputPanel">
+      <iframe id="output" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+    <div id="embedPanel">
       <h3>Embed This dApp</h3>
-      <input type="text" id="embedCode" readonly />
-      <button onclick="copyEmbedCode()">Copy Embed Code</button>
+      <input id="embedCode" type="text" readonly />
+      <button id="copyBtn">Copy Embed Code</button>
     </div>
   </div>
 </body>
