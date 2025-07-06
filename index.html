@@ -3,24 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kasparex Prompt Generator</title>
-  <link rel="stylesheet" href="kasparex-style.css" />
-  <script defer src="kasparex-init.js"></script>
+  <title>Kasparex dApp Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="kasparex-style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Kasparex Prompt Generator</h1>
-    <textarea id="prompt" placeholder="Enter your dApp idea here...">Create a dApp that displays KRC-20 token balances for a wallet</textarea>
-    <button id="generateBtn">Generate dApp</button>
-    <p id="status" class="status"></p>
-    <div id="outputPanel">
-      <iframe id="output" sandbox="allow-scripts allow-same-origin"></iframe>
+  
+  <div class="kasparex-widget-container">
+    <header class="widget-header">
+      <img src="https://i.imgur.com/gY9wGzF.png" alt="Kasparex Logo" class="logo">
+      <h1>Kasparex dApp Generator</h1>
+      <p>Bring your Kaspa dApp ideas to life with a single prompt.</p>
+    </header>
+
+    <div class="prompt-area">
+      <textarea id="prompt-input" placeholder="e.g., Create a dApp that shows the latest Kaspa block information...">Create a dApp that displays KRC-20 token balances for a given wallet address.</textarea>
+      <button id="generate-btn">Generate dApp</button>
     </div>
-    <div id="embedPanel">
-      <h3>Embed This dApp</h3>
-      <input id="embedCode" type="text" readonly />
-      <button id="copyBtn">Copy Embed Code</button>
+
+    <div id="output-wrapper">
+      <div id="loader" class="loader-container" style="display: none;">
+        <div class="spinner"></div>
+        <p>Generating your dApp...</p>
+      </div>
+      <iframe id="output-frame" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+
+    <div class="embed-panel">
+      <h2>Embed This dApp</h2>
+      <div class="input-group">
+        <input type="text" id="embed-code-input" readonly placeholder="Generate a dApp to get the embed code" />
+        <button id="copy-embed-btn" data-original-text="Copy Code">Copy Code</button>
+      </div>
     </div>
   </div>
+
+  <script defer src="kasparex-init.js"></script>
 </body>
 </html>
