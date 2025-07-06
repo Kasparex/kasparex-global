@@ -31,8 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Fetches the dApp code from the API based on the user's prompt.
    */
-  // (This is not the full file, just find the generateCode function and replace it)
-
   const generateCode = async () => {
     const userPrompt = promptInput.value.trim();
     if (!userPrompt) {
@@ -50,17 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({ userPrompt }),
       });
 
-      // --- IMPROVED ERROR HANDLING ---
+      // IMPROVED ERROR HANDLING
       if (!response.ok) {
-        // The server returned an error (like 400 or 500).
-        // Try to get the specific error message from the server's response body.
-        const errorData = await response.json().catch(() => ({})); // Gracefully handle if the response isn't JSON
+        const errorData = await response.json().catch(() => ({}));
         const errorMessage = errorData.error || `Request failed with status ${response.status}`;
         throw new Error(errorMessage);
       }
 
       const data = await response.json();
-      const cleanCode = data.code; // The code is already cleaned by the backend now
+      const cleanCode = data.code;
 
       const blob = new Blob([cleanCode], { type: "text/html" });
       const url = URL.createObjectURL(blob);
@@ -73,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
       console.error("Failed to generate dApp:", error);
       
-      // --- Display the detailed error message in the iframe ---
       const errorHTML = `
         <html>
           <body style="font-family: 'Inter', sans-serif; color: #c53030; text-align: center; padding: 2rem; background-color: #fff5f5;">
@@ -95,18 +90,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const codeToCopy = embedCodeInput.value;
 
     if (!codeToCopy || codeToCopy.includes('...')) {
-        // Don't copy placeholder text
         return;
     }
     
-    // Use the modern Navigator Clipboard API
     navigator.clipboard.writeText(codeToCopy).then(() => {
-      // Success feedback
       const originalText = copyEmbedBtn.dataset.originalText;
       copyEmbedBtn.textContent = 'Copied!';
       copyEmbedBtn.classList.add('copied');
 
-      // Revert the button text after 2 seconds
       setTimeout(() => {
         copyEmbedBtn.textContent = originalText;
         copyEmbedBtn.classList.remove('copied');
@@ -114,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }).catch(err => {
       console.error('Failed to copy text: ', err);
-      // You could add an alert here as a fallback
       alert("Could not copy the code. Please select it manually.");
     });
   };
