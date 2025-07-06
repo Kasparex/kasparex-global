@@ -12,13 +12,11 @@ router.post("/", async (req, res) => {
     return res.status(400).json({ error: "Prompt is required" });
   }
 
-  const systemContext = \`
-You are an expert Kaspa Web3 dApp generator. 
-Your task is to generate simple, complete HTML/JS front-end apps that interact with Kaspa API.
-If the user mentions smart contracts, include placeholders based on expected Kaspa SC syntax.
-The output must be full working code inside HTML <script> or <style> blocks if needed.
-Return ONLY code, no explanation.
-\`;
+  const systemContext = "You are an expert Kaspa Web3 dApp generator. " +
+    "Your task is to generate simple, complete HTML/JS front-end apps that interact with Kaspa API. " +
+    "If the user mentions smart contracts, include placeholders based on expected Kaspa SC syntax. " +
+    "The output must be full working code inside HTML <script> or <style> blocks if needed. " +
+    "Return ONLY code, no explanation.";
 
   try {
     const openaiRes = await axios.post(
@@ -33,7 +31,7 @@ Return ONLY code, no explanation.
       },
       {
         headers: {
-          "Authorization": \`Bearer \${process.env.OPENAI_API_KEY}\`,
+          "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
           "Content-Type": "application/json"
         }
       }
@@ -41,22 +39,22 @@ Return ONLY code, no explanation.
 
     const rawCode = openaiRes.data.choices[0].message.content;
 
-    const wrappedCode = \`
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Kasparex dApp</title>
-  <link rel="stylesheet" href="https://kasparex.github.io/kasparex-global/kasparex-style.css">
-  <script defer src="https://kasparex.github.io/kasparex-global/kasparex-init.js"></script>
-</head>
-<body>
-  <div class="container">
-    \${rawCode}
-  </div>
-</body>
-</html>
-\`;
+    const wrappedCode = [
+      "<!DOCTYPE html>",
+      "<html lang=\"en\">",
+      "<head>",
+      "  <meta charset=\"UTF-8\">",
+      "  <title>Kasparex dApp</title>",
+      "  <link rel=\"stylesheet\" href=\"https://kasparex.github.io/kasparex-global/kasparex-style.css\">",
+      "  <script defer src=\"https://kasparex.github.io/kasparex-global/kasparex-init.js\"></script>",
+      "</head>",
+      "<body>",
+      "  <div class=\"container\">",
+      rawCode,
+      "  </div>",
+      "</body>",
+      "</html>"
+    ].join("\n");
 
     res.json({ code: wrappedCode });
 
