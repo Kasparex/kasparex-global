@@ -12,7 +12,6 @@ router.post("/", async (req, res) => {
     return res.status(400).json({ error: "Prompt is required" });
   }
 
-  // --- CHANGED: A much more detailed and robust system prompt ---
   const systemContext = `You are an expert Kaspa dApp generator. Your task is to generate a complete, self-contained, and functional HTML file based on the user's prompt.
 
   **CRITICAL INSTRUCTIONS:**
@@ -27,12 +26,12 @@ router.post("/", async (req, res) => {
     const openaiRes = await axios.post(
       "https://api.openai.com/v1/chat/completions",
       {
-        model: "gpt-4o", // gpt-4o is excellent for this
+        model: "gpt-4o",
         messages: [
           { role: "system", content: systemContext },
           { role: "user", content: userPrompt }
         ],
-        temperature: 0.2, // Lower temperature for more predictable code generation
+        temperature: 0.2,
       },
       {
         headers: {
@@ -42,15 +41,16 @@ router.post("/", async (req, res) => {
       }
     );
 
-    const generatedCode = openaiRes.data.choices[0].message.content;
+    const rawCode = openaiRes.data.choices.message.content;
 
-    // --- CHANGED: Send the raw code from the AI directly ---
-    // We are no longer wrapping the code in our own HTML structure.
-    // The AI is now responsible for generating the complete document.
-    res.json({ code: generatedCode });
+    // --- NEW CHANGE: Clean the code before sending it ---
+    // This regular expression removes the leading ` ```html ` and trailing ` ``` `
+    const cleanedCode = rawCode.replace(/^```html\s*|```\s*$/g, "").trim();
+
+    // --- Send the CLEANED code to the front-end ---
+    res.json({ code: cleanedCode });
 
   } catch (err) {
-    // Improved error logging
     const errorMessage = err.response ? JSON.stringify(err.response.data) : err.message;
     console.error("OpenAI API error:", errorMessage);
     res.status(500).json({ error: "Failed to generate code from AI.", details: errorMessage });
