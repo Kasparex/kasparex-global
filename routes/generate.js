@@ -17,10 +17,10 @@ router.post("/", async (req, res) => {
   **CRITICAL INSTRUCTIONS:**
   1.  **Single File Output:** The entire output must be a single HTML file. It must start with \`<!DOCTYPE html>\` and end with \`</html>\`.
   2.  **No Markdown:** Do NOT wrap the final code in markdown fences like \`\`\`html or \`\`\`. The output must be raw HTML code.
-  3.  **Self-Contained:** All CSS and JavaScript must be included directly within the HTML file in \`<style>\` and \`<script>\` tags, respectively. Do not use external file links.
-  4.  **Styling:** Use a clean, modern, and user-friendly design. You may use this color palette for inspiration: primary: #0097b2, background: #f0f4f8, text: #333. The dApp should look good inside a container.
-  5.  **Kaspa API:** For any Kaspa-related functionality, use placeholder fetch calls to a conceptual Kaspa API (e.g., 'https://api.kaspa.org/...') but return hardcoded, realistic mock data for demonstration purposes. This makes the widget appear functional without a live API connection.
-  6.  **No Explanations:** Return ONLY the HTML code. Do not add any conversational text, introductions, or explanations before or after the code.`;
+  3.  **Self-Contained:** All CSS and JavaScript must be included directly within the HTML file in \`<style>\` and \`<script>\` tags.
+  4.  **Styling:** Use a clean, modern, and user-friendly design.
+  5.  **Functionality:** For Kaspa API calls, return hardcoded, realistic mock data for demonstration purposes.
+  6.  **No Explanations:** Return ONLY the HTML code. Do not add any conversational text.`;
 
   try {
     const openaiRes = await axios.post(
@@ -41,19 +41,28 @@ router.post("/", async (req, res) => {
       }
     );
 
-    const rawCode = openaiRes.data.choices.message.content;
+    // --- ROBUSTNESS FIX ---
+    // Check if the AI response has the data we expect before trying to access it.
+    const messageContent = openaiRes?.data?.choices?.[0]?.message?.content;
 
-    // --- NEW CHANGE: Clean the code before sending it ---
-    // This regular expression removes the leading ` ```html ` and trailing ` ``` `
-    const cleanedCode = rawCode.replace(/^```html\s*|```\s*$/g, "").trim();
+    if (!messageContent) {
+      // If the response is not what we expect, log it for debugging and throw an error.
+      console.error("Invalid response structure from OpenAI:", JSON.stringify(openaiRes.data));
+      throw new Error("The AI service returned an invalid or empty response.");
+    }
 
-    // --- Send the CLEANED code to the front-end ---
+    // Clean the code by removing markdown fences, just in case the AI still adds them.
+    const cleanedCode = messageContent.replace(/^```html\s*|```\s*$/g, "").trim();
+
     res.json({ code: cleanedCode });
 
   } catch (err) {
-    const errorMessage = err.response ? JSON.stringify(err.response.data) : err.message;
-    console.error("OpenAI API error:", errorMessage);
-    res.status(500).json({ error: "Failed to generate code from AI.", details: errorMessage });
+    // This block now catches errors from Axios AND our own thrown errors.
+    const apiErrorDetails = err.response ? JSON.stringify(err.response.data) : err.message;
+    console.error("API error:", apiErrorDetails);
+    
+    // Send a structured error back to the front-end.
+    res.status(500).json({ error: "Failed to generate code from the AI service.", details: apiErrorDetails });
   }
 });
 
