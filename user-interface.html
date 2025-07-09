@@ -4,14 +4,19 @@
   <meta charset="UTF-8">
   <title>Kasparex UI Showcase</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    /* Paste kasparex-style.css here */
-    /* (Code is long, so insert the full CSS I gave you earlier) */
-  </style>
+
+  <!-- ✅ Load updated Kasparex styles from CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kasparex/kasparex-global@latest/kasparex-style.css?v=1.1">
 </head>
 <body>
   <div class="kasparex-widget-container">
 
+    <!-- 🌗 Light/Dark Theme Toggle -->
+    <div class="flex justify-end mb-4">
+      <button id="theme-toggle" class="btn-outline" style="font-size: 0.9rem;">🌞 Light Mode</button>
+    </div>
+
+    <!-- Header -->
     <div class="widget-header">
       <h1>🎨 Kasparex UI Showcase</h1>
       <p>Preview all core UI components in one dApp layout.</p>
@@ -28,25 +33,25 @@
     <!-- Tags -->
     <h2 class="mt-4 mb-2">Tags / Filters</h2>
     <div class="flex gap-1 flex-wrap">
-      <div class="tag">💡 General</div>
-      <div class="tag">🧰 Tools</div>
+      <div class="tag">⚡ General</div>
       <div class="tag">🎮 Games</div>
+      <div class="tag">🧰 Tools</div>
       <div class="tag">🚀 Airdrops</div>
     </div>
 
-    <!-- Alert Boxes -->
+    <!-- Alerts -->
     <h2 class="mt-4 mb-2">Alerts</h2>
     <div class="alert">ℹ️ This is a neutral info alert.</div>
     <div class="alert alert-success">✅ Success! Your action was processed.</div>
     <div class="alert alert-error">❌ Error! Something went wrong.</div>
-    <div class="alert alert-info">📢 Info alert: don't forget to subscribe!</div>
+    <div class="alert alert-info">📢 Info alert: don’t forget to subscribe!</div>
 
     <!-- Card Box -->
     <h2 class="mt-4 mb-2">Card Example</h2>
     <div class="card">
       <div class="flex justify-between items-center mb-2">
         <span class="tag">📦 Example Widget</span>
-        <span class="tag tag-primary">Active</span>
+        <span class="tag">✅ Active</span>
       </div>
       <p>This card demonstrates how a widget or listing might appear. You can add icons, buttons, links, etc. inside.</p>
       <div class="flex gap-2 mt-3">
@@ -73,5 +78,31 @@
     <p><span class="dots-loader"></span> Please wait...</p>
 
   </div>
+
+  <!-- 🌗 Theme Toggle Script -->
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    function applyTheme(mode) {
+      if (mode === 'dark') {
+        body.classList.add('dark-theme');
+        toggleBtn.textContent = '🌚 Dark Mode';
+      } else {
+        body.classList.remove('dark-theme');
+        toggleBtn.textContent = '🌞 Light Mode';
+      }
+    }
+
+    const savedTheme = localStorage.getItem('kasparex-theme') || 'light';
+    applyTheme(savedTheme);
+
+    toggleBtn.addEventListener('click', () => {
+      const current = body.classList.contains('dark-theme') ? 'dark' : 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('kasparex-theme', next);
+      applyTheme(next);
+    });
+  </script>
 </body>
 </html>
