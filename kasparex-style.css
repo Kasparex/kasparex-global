@@ -9,7 +9,7 @@
   --primary-hover-color: #0097a0;
   --background-color: #f0f4f8;
   --widget-background: #ffffff;
-  --text-color: #333;
+  --text-color: #000;
   --subtle-text-color: #667;
   --border-color: #e2e8f0;
   --shadow-color: rgba(0, 30, 80, 0.1);
@@ -107,7 +107,7 @@ button:disabled {
 /* Tags / Filters */
 .tag {
   display: inline-block;
-  padding: 0.4rem 0.8rem;
+  padding: 0.4rem 0.4rem;
   border-radius: 2rem;
   font-size: 0.95rem;
   background-color: white;
