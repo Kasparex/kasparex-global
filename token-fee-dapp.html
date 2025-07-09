@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kaspa Token Utility dApp</title>
+
+  <!-- Kasparex Global UI + Core -->
+  <link rel="stylesheet" href="https://kasparex.github.io/kasparex-global/kasparex-style.css">
+  <script type="module" src="https://kasparex.github.io/kasparex-global/kasparex-core/index.js"></script>
+</head>
+<body>
+  <div class="kasparex-widget-container">
+    <div class="widget-header">
+      <h1>🧪 Token-Driven Kaspa dApp</h1>
+      <p>Each action charges a KAS fee and rewards both Kasparex and the selected token's treasury.</p>
+    </div>
+
+    <div class="card">
+      <p><strong>Step 1:</strong> Select a token from the dropdown (top-right)</p>
+      <p><strong>Step 2:</strong> Connect your wallet (top-left)</p>
+    </div>
+
+    <div class="card">
+      <p><strong>Action Example</strong> (with fee split):</p>
+      <button id="payAndDoAction">💥 Use dApp Action (0.01 KAS)</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initWalletModule } from 'https://kasparex.github.io/kasparex-global/kasparex-core/wallet.js';
+    import { initTokenSelector } from 'https://kasparex.github.io/kasparex-global/kasparex-core/token-selector.js';
+    import { handleDappFee } from 'https://kasparex.github.io/kasparex-global/kasparex-core/fee-handler.js';
+    import { showToast } from 'https://kasparex.github.io/kasparex-global/kasparex-core/notify.js';
+
+    // Init wallet + token modules
+    initWalletModule();
+    initTokenSelector();
+
+    // Button behavior
+    document.getElementById("payAndDoAction").onclick = async () => {
+      await handleDappFee(); // mock sends 0.01 KAS split
+      showToast("✅ dApp Action Executed", "success");
+    };
+  </script>
+</body>
+</html>
