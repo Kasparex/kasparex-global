@@ -131,7 +131,7 @@ button:disabled {
 .alert {
   padding: 1rem;
   border-radius: 8px;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   border: 1px solid var(--primary-color);
   background-color: #E6FFFC;
   color: var(--primary-color);
@@ -176,7 +176,7 @@ select, textarea {
   border-radius: 8px;
   border: 1px solid var(--border-color);
   box-sizing: border-box;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   background: #fff;
   color: var(--text-color);
   font-family: var(--font-family);
@@ -289,7 +289,7 @@ select, textarea {
 .tabs {
   display: flex;
   gap: 1rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 .tab {
   padding: 0.75rem 1.25rem;
@@ -308,54 +308,4 @@ select, textarea {
   background-color: #E6FFFC;
   color: var(--primary-color);
   border-color: var(--primary-color);
-}
-
-/* Dark Theme Fixes */
-body.dark-theme .card,
-body.dark-theme .kasparex-widget-container,
-body.dark-theme .icon-button,
-body.dark-theme .alert,
-body.dark-theme textarea,
-body.dark-theme input[type="text"],
-body.dark-theme input[type="number"],
-body.dark-theme select,
-body.dark-theme .tab {
-  background-color: var(--widget-background);
-  color: var(--text-color);
-  border-color: var(--border-color);
-}
-
-body.dark-theme .tab.active {
-  background: var(--primary-color);
-  color: white;
-}
-
-/* Specific Dark Mode Patch for Embed Panel or Modal Popups */
-body.dark-theme .embed-modal,
-body.dark-theme #embedModal,
-body.dark-theme .modal,
-body.dark-theme .popup,
-body.dark-theme .kasparex-popup,
-body.dark-theme .kasparex-panel {
-  background-color: var(--widget-background) !important;
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
-}
-
-/* Token Selector Fix */
-#kasparex-token-selector {
-  max-width: 300px;
-  min-width: 180px;
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background: #fff;
-  font-size: 1rem;
-  font-family: var(--font-family);
-  margin: 1rem;
-}
-body.dark-theme #kasparex-token-selector {
-  background: var(--widget-background);
-  color: var(--text-color);
-  border-color: var(--border-color);
 }
