@@ -10,7 +10,12 @@
   <div class="kasparex-widget-container">
 
     <div class="flex justify-end mb-4">
-      <button id="theme-toggle" class="btn-outline" style="font-size: 0.9rem;">🌞 Light Mode</button>
+      
+    <label class="toggle-switch">
+      <input type="checkbox" id="theme-toggle-checkbox">
+      <span class="slider"></span>
+    </label>
+    
     </div>
 
     <div class="widget-header">
@@ -79,13 +84,15 @@
   
     
     <h2 class="mt-4 mb-2" style="font-size: 1.2rem;">Toggle Switch</h2>
+    
     <label class="toggle-switch">
       <input type="checkbox">
       <span class="slider"></span>
     </label>
+    
 
     <h2 class="mt-4 mb-2" style="font-size: 1.2rem;">Cryptic Loader</h2>
-    <div class="cryptic-loader">kaspa:qra0g2jvwxx...⛓️</div>
+    <div class="cryptic-loader" style="width: 100%"><span id="cryptic-text">kaspa:</span></div>
 
 
     <h2 class="mt-4 mb-2" style="font-size: 1.2rem;">Dividers</h2>
@@ -96,7 +103,7 @@
   </div>
 
   <script>
-    const toggleBtn = document.getElementById('theme-toggle');
+    const toggleCheckbox = document.getElementById("theme-toggle-checkbox");
     const body = document.body;
     function applyTheme(mode) {
       if (mode === 'dark') {
@@ -116,5 +123,51 @@
       applyTheme(next);
     });
   </script>
+
+<script>
+  const crypticTarget = document.getElementById("cryptic-text");
+  const crypticLine = "kaspa:qra0g2jvwxxcyz9hr3s7...⛓️";
+  let idx = 0;
+
+  function typeChar() {
+    if (idx <= crypticLine.length) {
+      crypticTarget.innerText = crypticLine.slice(0, idx++);
+      setTimeout(typeChar, 80);
+    } else {
+      idx = 0;
+      setTimeout(typeChar, 1000);
+    }
+  }
+  typeChar();
+</script>
+
+
+<script>
+  const crypticTarget = document.getElementById("cryptic-text");
+  const kaspaHashes = [
+    "kaspa:qra0g2jvwxxcyz9hr3s7...⛓️",
+    "kaspa:qp9p0e8du7jjgl2kpl...🧬",
+    "kaspa:qz8c9um56l7ey23wq...🔒",
+    "kaspa:qg6thdrf43zxfqqn...⚙️"
+  ];
+  let currentHash = 0;
+  let idx = 0;
+
+  function typeCryptic() {
+    const hash = kaspaHashes[currentHash];
+    if (idx <= hash.length) {
+      crypticTarget.innerText = hash.slice(0, idx++);
+      setTimeout(typeCryptic, 80);
+    } else {
+      setTimeout(() => {
+        idx = 0;
+        currentHash = (currentHash + 1) % kaspaHashes.length;
+        typeCryptic();
+      }, 1000);
+    }
+  }
+  typeCryptic();
+</script>
+
 </body>
 </html>
