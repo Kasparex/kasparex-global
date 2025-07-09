@@ -104,7 +104,7 @@ button,
   transition: background-color 0.2s, transform 0.1s;
 }
 
-/* Outline Button */
+/* Outline Button - updated */
 .btn-outline {
   background-color: white;
   color: black;
@@ -114,6 +114,8 @@ button,
 
 .btn-outline:hover {
   background-color: var(--highlight-bg);
+  color: var(--highlight-border);
+  border-color: var(--highlight-border);
 }
 
 button:hover,
@@ -161,7 +163,7 @@ button:disabled,
   border-color: #60a5fa;
 }
 
-/* Tags / Filters */
+/* Tags / Filters - updated */
 .tag,
 .filter-btn {
   background-color: white;
@@ -181,6 +183,8 @@ button:disabled,
 .tag:hover,
 .filter-btn:hover {
   background-color: var(--highlight-bg);
+  color: var(--highlight-border);
+  border-color: var(--highlight-border);
 }
 
 /* Card Component */
@@ -337,25 +341,29 @@ button:disabled,
 }
 
 .dark-theme .btn-outline {
-  background: transparent;
-  border: 1px solid #f8fafc;
-  color: #f8fafc;
+  background: white;
+  color: black;
+  border: 1px solid black;
 }
 
 .dark-theme .btn-outline:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--highlight-bg);
+  color: var(--highlight-border);
+  border-color: var(--highlight-border);
 }
 
 .dark-theme .tag,
 .dark-theme .filter-btn {
-  background: transparent;
-  color: #f8fafc;
-  border: 1px solid #f8fafc;
+  background: white;
+  color: black;
+  border: 1px solid black;
 }
 
 .dark-theme .tag:hover,
 .dark-theme .filter-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--highlight-bg);
+  color: var(--highlight-border);
+  border-color: var(--highlight-border);
 }
 
 .dark-theme .card {
