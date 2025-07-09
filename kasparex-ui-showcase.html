@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kasparex UI Showcase</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="kasparex-style.css">
+</head>
+<body>
+  <div class="kasparex-widget-container">
+
+    <div class="flex justify-end mb-4">
+      <button id="theme-toggle" class="btn-outline" style="font-size: 0.9rem;">🌞 Light Mode</button>
+    </div>
+
+    <div class="widget-header">
+      <h1>🎨 Kasparex UI Showcase</h1>
+      <p>Full preview of styled components in one layout.</p>
+    </div>
+
+    <h2 class="mt-4 mb-2">Buttons</h2>
+    <div class="flex gap-2">
+      <button>Primary Button</button>
+      <button class="btn-outline">Outline Button</button>
+      <button disabled>Disabled</button>
+      <button class="icon-button">⚙️</button>
+    </div>
+
+    <h2 class="mt-4 mb-2">Tags</h2>
+    <div class="flex gap-1 flex-wrap">
+      <div class="tag">⚡ General</div>
+      <div class="tag">🎮 Games</div>
+      <div class="tag tag-primary">🚀 Featured</div>
+    </div>
+
+    <h2 class="mt-4 mb-2">Alerts</h2>
+    <div class="alert">ℹ️ Info alert</div>
+    <div class="alert alert-success">✅ Success alert</div>
+    <div class="alert alert-error">❌ Error alert</div>
+    <div class="alert alert-info">📢 Tip alert</div>
+
+    <h2 class="mt-4 mb-2">Card</h2>
+    <div class="card">
+      <p>This is a sample card with content inside.</p>
+    </div>
+
+    <h2 class="mt-4 mb-2">Inputs & Select</h2>
+    <input type="text" placeholder="Text input">
+    <input type="number" placeholder="Number input">
+    <select>
+      <option>Select option</option>
+      <option>Option 1</option>
+      <option>Option 2</option>
+    </select>
+    <textarea rows="3" placeholder="Textarea"></textarea>
+
+    <h2 class="mt-4 mb-2">Token Selector</h2>
+    <select id="kasparex-token-selector">
+      <option selected disabled>🎯 Select Token</option>
+      <option>KREX</option>
+      <option>SARAH</option>
+      <option>VECTOR</option>
+    </select>
+
+    <h2 class="mt-4 mb-2">Tabs</h2>
+    <div class="tabs">
+      <div class="tab active">Tab 1</div>
+      <div class="tab">Tab 2</div>
+      <div class="tab">Tab 3</div>
+    </div>
+
+    <h2 class="mt-4 mb-2">Loaders</h2>
+    <div class="loader-container" style="position: static;">
+      <span class="spinner"></span>
+      <span>Loading...</span>
+    </div>
+    <p><span class="dots-loader"></span> Please wait...</p>
+
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+    function applyTheme(mode) {
+      if (mode === 'dark') {
+        body.classList.add('dark-theme');
+        toggleBtn.textContent = '🌚 Dark Mode';
+      } else {
+        body.classList.remove('dark-theme');
+        toggleBtn.textContent = '🌞 Light Mode';
+      }
+    }
+    const savedTheme = localStorage.getItem('kasparex-theme') || 'light';
+    applyTheme(savedTheme);
+    toggleBtn.addEventListener('click', () => {
+      const current = body.classList.contains('dark-theme') ? 'dark' : 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('kasparex-theme', next);
+      applyTheme(next);
+    });
+  </script>
+</body>
+</html>
