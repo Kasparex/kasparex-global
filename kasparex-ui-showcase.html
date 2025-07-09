@@ -102,71 +102,28 @@
 
   </div>
 
-  <script>
-    const toggleCheckbox = document.getElementById("theme-toggle-checkbox");
-    const body = document.body;
-    function applyTheme(mode) {
-      if (mode === 'dark') {
-        body.classList.add('dark-theme');
-        toggleBtn.textContent = '🌚 Dark Mode';
-      } else {
-        body.classList.remove('dark-theme');
-        toggleBtn.textContent = '🌞 Light Mode';
-      }
-    }
-    const savedTheme = localStorage.getItem('kasparex-theme') || 'light';
-    applyTheme(savedTheme);
-    toggleBtn.addEventListener('click', () => {
-      const current = body.classList.contains('dark-theme') ? 'dark' : 'light';
-      const next = current === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('kasparex-theme', next);
-      applyTheme(next);
-    });
-  </script>
-
+  
 <script>
-  const crypticTarget = document.getElementById("cryptic-text");
-  const crypticLine = "kaspa:qra0g2jvwxxcyz9hr3s7...⛓️";
-  let idx = 0;
+  const toggleCheckbox = document.getElementById("theme-toggle-checkbox");
+  const body = document.body;
 
-  function typeChar() {
-    if (idx <= crypticLine.length) {
-      crypticTarget.innerText = crypticLine.slice(0, idx++);
-      setTimeout(typeChar, 80);
+  function applyTheme(mode) {
+    if (mode === "dark") {
+      body.classList.add("dark-theme");
     } else {
-      idx = 0;
-      setTimeout(typeChar, 1000);
+      body.classList.remove("dark-theme");
     }
   }
-  typeChar();
-</script>
 
+  const savedTheme = localStorage.getItem("kasparex-theme") || "light";
+  applyTheme(savedTheme);
+  toggleCheckbox.checked = savedTheme === "dark";
 
-<script>
-  const crypticTarget = document.getElementById("cryptic-text");
-  const kaspaHashes = [
-    "kaspa:qra0g2jvwxxcyz9hr3s7...⛓️",
-    "kaspa:qp9p0e8du7jjgl2kpl...🧬",
-    "kaspa:qz8c9um56l7ey23wq...🔒",
-    "kaspa:qg6thdrf43zxfqqn...⚙️"
-  ];
-  let currentHash = 0;
-  let idx = 0;
-
-  function typeCryptic() {
-    const hash = kaspaHashes[currentHash];
-    if (idx <= hash.length) {
-      crypticTarget.innerText = hash.slice(0, idx++);
-      setTimeout(typeCryptic, 80);
-    } else {
-      setTimeout(() => {
-        idx = 0;
-        currentHash = (currentHash + 1) % kaspaHashes.length;
-        typeCryptic();
-      }, 1000);
-    }
-  }
-  typeCryptic();
+  toggleCheckbox.addEventListener("change", () => {
+    const newMode = toggleCheckbox.checked ? "dark" : "light";
+    localStorage.setItem("kasparex-theme", newMode);
+    applyTheme(newMode);
+  });
 </script>
 
 </body>
