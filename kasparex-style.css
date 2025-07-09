@@ -341,3 +341,21 @@ body.dark-theme .kasparex-panel {
   color: var(--text-color);
   border: 1px solid var(--border-color);
 }
+
+/* Token Selector Fix */
+#kasparex-token-selector {
+  max-width: 300px;
+  min-width: 180px;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: #fff;
+  font-size: 1rem;
+  font-family: var(--font-family);
+  margin: 1rem;
+}
+body.dark-theme #kasparex-token-selector {
+  background: var(--widget-background);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
