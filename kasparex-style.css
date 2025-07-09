@@ -1,6 +1,5 @@
-/* kasparex-style.css - Synced with Site Visuals from Screenshots  */
+/* kasparex-style.css - Clean UI styling for Kasparex widgets and dApps */
 
-/* Root Theme Variables */
 :root {
   --primary-color: #02ABB8;
   --primary-hover-color: #0097a0;
@@ -52,7 +51,7 @@ body {
   margin: auto;
 }
 
-/* Headers */
+/* Header Section */
 .widget-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -68,7 +67,7 @@ body {
   margin: 0;
 }
 
-/* Input Fields */
+/* Inputs */
 textarea,
 input[type="text"],
 input[type="number"] {
@@ -91,7 +90,7 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(2, 171, 184, 0.2);
 }
 
-/* Buttons */
+/* Primary Button */
 button,
 .btn {
   background: var(--primary-color);
@@ -103,6 +102,18 @@ button,
   font-size: 1rem;
   font-weight: 500;
   transition: background-color 0.2s, transform 0.1s;
+}
+
+/* Outline Button */
+.btn-outline {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background-color: var(--highlight-bg);
 }
 
 button:hover,
@@ -121,13 +132,75 @@ button:disabled,
   cursor: not-allowed;
 }
 
-.btn-outline {
+/* Alerts */
+.alert {
   background-color: var(--highlight-bg);
   color: var(--primary-color);
   border: 1px solid var(--highlight-border);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  font-weight: 500;
 }
 
-/* Output & Results */
+.alert-success {
+  background-color: #ecfdf5;
+  color: #15803d;
+  border-color: #34d399;
+}
+
+.alert-error {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border-color: #f87171;
+}
+
+.alert-info {
+  background-color: #eff6ff;
+  color: #1e40af;
+  border-color: #60a5fa;
+}
+
+/* Tags / Filters */
+.tag,
+.filter-btn {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.tag:hover,
+.filter-btn:hover {
+  background-color: var(--highlight-bg);
+}
+
+/* Card Component */
+.card {
+  background: var(--widget-background);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px -2px var(--shadow-color);
+}
+
+.card p {
+  color: #000;
+}
+
+.card .flex {
+  gap: 10px;
+}
+
+/* Output / Results */
 #output-wrapper,
 #results {
   margin-top: 1.5rem;
@@ -182,7 +255,7 @@ button:disabled,
   background-color: #f8fafc;
 }
 
-/* Loader Spinner */
+/* Loader */
 .loader-container {
   position: absolute;
   display: flex;
@@ -208,66 +281,20 @@ button:disabled,
   100% { transform: rotate(360deg); }
 }
 
-/* Tag / Filter Styles */
-.tag,
-.filter-btn {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.4rem 0.9rem;
-  border-radius: 9999px;
-  background-color: var(--highlight-bg);
-  border: 1px solid var(--highlight-border);
-  color: var(--primary-color);
-  font-size: 0.9rem;
-  font-weight: 500;
-  gap: 0.4rem;
-  transition: all 0.2s ease;
-  cursor: pointer;
+.dots-loader::after {
+  content: '⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏';
+  animation: dots 1s steps(10) infinite;
+  font-family: monospace;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.filter-btn:hover {
-  background-color: #d8fafa;
+@keyframes dots {
+  to { transform: translateX(-1em); }
 }
 
-/* Alert Boxes */
-.alert {
-  padding: 1rem;
-  border-radius: 8px;
-  margin-top: 1rem;
-  font-weight: 500;
-  background-color: var(--highlight-bg);
-  border: 1px solid var(--highlight-border);
-  color: var(--primary-color);
-}
-
-.alert-success {
-  background-color: #ecfdf5;
-  color: #15803d;
-  border-color: #34d399;
-}
-
-.alert-error {
-  background-color: #fef2f2;
-  color: #b91c1c;
-  border-color: #f87171;
-}
-
-.alert-info {
-  background-color: #eff6ff;
-  color: #1e40af;
-  border-color: #60a5fa;
-}
-
-/* Card Box */
-.card {
-  background: var(--widget-background);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  padding: 1.5rem;
-  box-shadow: 0 4px 12px -2px var(--shadow-color);
-}
-
-/* Utility Spacing */
+/* Utility Classes */
 .mt-1 { margin-top: 0.25rem; }
 .mt-2 { margin-top: 0.5rem; }
 .mt-3 { margin-top: 1rem; }
@@ -278,7 +305,6 @@ button:disabled,
 .mb-3 { margin-bottom: 1rem; }
 .mb-4 { margin-bottom: 2rem; }
 
-/* Flex/Grid Helpers */
 .flex { display: flex; }
 .flex-col { flex-direction: column; }
 .flex-row { flex-direction: row; }
@@ -292,18 +318,59 @@ button:disabled,
 .grid-2 { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 .grid-3 { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 
-/* Dots Loader */
-.dots-loader::after {
-  content: '⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏';
-  animation: dots 1s steps(10) infinite;
-  font-family: monospace;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
+/* Dark Theme */
+.dark-theme {
+  background-color: #0f172a;
+  color: #f8fafc;
 }
 
-@keyframes dots {
-  to { transform: translateX(-1em); }
+.dark-theme .kasparex-widget-container {
+  background-color: #1e293b;
+  color: #f8fafc;
+  box-shadow: 0 10px 25px -5px rgba(255, 255, 255, 0.05);
+}
+
+.dark-theme .btn,
+.dark-theme button {
+  background-color: #02ABB8;
+  color: #fff;
+}
+
+.dark-theme .btn-outline {
+  background: transparent;
+  border: 1px solid #f8fafc;
+  color: #f8fafc;
+}
+
+.dark-theme .btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .tag,
+.dark-theme .filter-btn {
+  background: transparent;
+  color: #f8fafc;
+  border: 1px solid #f8fafc;
+}
+
+.dark-theme .tag:hover,
+.dark-theme .filter-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .card {
+  background-color: #334155;
+  color: #f8fafc;
+}
+
+.dark-theme .card p {
+  color: #f1f5f9;
+}
+
+.dark-theme .alert {
+  background-color: #164e63;
+  border-color: #0e7490;
+  color: #e0f2fe;
 }
 
 /* Responsive */
