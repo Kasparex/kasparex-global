@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kaspa dApp with Guide</title>
+
+  <!-- Kasparex Global UI + Core -->
+  <link rel="stylesheet" href="https://kasparex.github.io/kasparex-global/kasparex-style.css">
+  <script type="module" src="https://kasparex.github.io/kasparex-global/kasparex-core/index.js"></script>
+</head>
+<body>
+  <div class="kasparex-widget-container">
+    <div class="widget-header">
+      <h1>📘 dApp with Built-in Guide</h1>
+      <p>This dApp charges a small fee and includes a popup tutorial.</p>
+    </div>
+
+    <div class="card">
+      <p><strong>Action Button</strong> (charges fee & explains everything):</p>
+      <button id="doActionBtn">🚀 Use dApp Action</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initWalletModule } from 'https://kasparex.github.io/kasparex-global/kasparex-core/wallet.js';
+    import { initTokenSelector } from 'https://kasparex.github.io/kasparex-global/kasparex-core/token-selector.js';
+    import { handleDappFee } from 'https://kasparex.github.io/kasparex-global/kasparex-core/fee-handler.js';
+    import { showToast } from 'https://kasparex.github.io/kasparex-global/kasparex-core/notify.js';
+    import { initDappGuide } from 'https://kasparex.github.io/kasparex-global/kasparex-core/dapp-guide.js';
+
+    // Init modules
+    initWalletModule();
+    initTokenSelector();
+    initDappGuide({
+      title: "Kaspa Token Utility dApp",
+      what: "This dApp charges a 0.01 KAS fee per action and distributes it between Kasparex and the selected token’s treasury.",
+      how: "1) Connect your wallet\n2) Choose a token\n3) Click the action button",
+      why: "This helps fund the token ecosystem and Kasparex development in a transparent way.",
+      benefits: [
+        "Automatic profit sharing",
+        "Increased token utility",
+        "Self-sustaining model"
+      ],
+      fees: "0.01 KAS per click. The fee is split based on the selected token's configuration."
+    });
+
+    document.getElementById("doActionBtn").onclick = async () => {
+      await handleDappFee(); // mock fee send
+      showToast("Action complete! ✅", "success");
+    };
+  </script>
+</body>
+</html>
