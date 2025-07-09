@@ -106,8 +106,9 @@ button:disabled {
 
 /* Tags / Filters */
 .tag {
+  border-radius: 2rem;
   display: inline-block;
-  padding: 0.4rem 0.4rem;
+  padding: 0.4rem 0.8rem 0.4rem 0.4rem;
   border-radius: 8px;
   font-size: 0.95rem;
   background-color: white;
@@ -131,7 +132,7 @@ button:disabled {
 .alert {
   padding: 1rem;
   border-radius: 8px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   border: 1px solid var(--primary-color);
   background-color: #E6FFFC;
   color: var(--primary-color);
@@ -176,7 +177,7 @@ select, textarea {
   border-radius: 8px;
   border: 1px solid var(--border-color);
   box-sizing: border-box;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   background: #fff;
   color: var(--text-color);
   font-family: var(--font-family);
@@ -289,7 +290,7 @@ select, textarea {
 .tabs {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 .tab {
   padding: 0.75rem 1.25rem;
@@ -308,4 +309,149 @@ select, textarea {
   background-color: #E6FFFC;
   color: var(--primary-color);
   border-color: var(--primary-color);
+}
+
+/* Dark Theme Fixes */
+body.dark-theme .card,
+body.dark-theme .kasparex-widget-container,
+body.dark-theme .icon-button,
+body.dark-theme .alert,
+body.dark-theme textarea,
+body.dark-theme input[type="text"],
+body.dark-theme input[type="number"],
+body.dark-theme select,
+body.dark-theme .tab {
+  background-color: var(--widget-background);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+body.dark-theme .tab.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* Specific Dark Mode Patch for Embed Panel or Modal Popups */
+body.dark-theme .embed-modal,
+body.dark-theme #embedModal,
+body.dark-theme .modal,
+body.dark-theme .popup,
+body.dark-theme .kasparex-popup,
+body.dark-theme .kasparex-panel {
+  background-color: var(--widget-background) !important;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+/* Token Selector Fix */
+#kasparex-token-selector {
+  max-width: 300px;
+  min-width: 180px;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: #fff;
+  font-size: 1rem;
+  font-family: var(--font-family);
+  margin: 1rem;
+}
+body.dark-theme #kasparex-token-selector {
+  background: var(--widget-background);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+/* Divider */
+.divider {
+  border-top: 1px dashed #ccc;
+  margin: 1rem 0;
+}
+
+
+/* Divider */
+.divider {
+  border-top: 2px dashed #bbb;
+  margin: 1.5rem 0;
+}
+
+
+
+/* Toggle Switch */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  box-shadow: 0 2px 6px var(--shadow-color);
+  transition: 0.4s;
+  border-radius: 34px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+.toggle-switch input:checked + .slider {
+  background-color: var(--primary-color);
+}
+.toggle-switch input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+
+
+/* Cryptic Code Loader */
+.cryptic-loader {
+  font-family: monospace;
+  font-size: 1rem;
+  color: var(--primary-color);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid var(--primary-color);
+  width: 18ch;
+  animation: typing 2s steps(18), blink 0.75s step-end infinite alternate;
+}
+@keyframes typing {
+  from { width: 0 }
+  to { width: 18ch }
+}
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+body.dark-theme ::-webkit-scrollbar-thumb {
+  background-color: #555;
 }
