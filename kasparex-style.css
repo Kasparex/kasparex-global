@@ -329,3 +329,15 @@ body.dark-theme .tab.active {
   background: var(--primary-color);
   color: white;
 }
+
+/* Specific Dark Mode Patch for Embed Panel or Modal Popups */
+body.dark-theme .embed-modal,
+body.dark-theme #embedModal,
+body.dark-theme .modal,
+body.dark-theme .popup,
+body.dark-theme .kasparex-popup,
+body.dark-theme .kasparex-panel {
+  background-color: var(--widget-background) !important;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
