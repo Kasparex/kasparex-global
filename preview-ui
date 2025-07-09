@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kasparex UI Showcase</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Paste kasparex-style.css here */
+    /* (Code is long, so insert the full CSS I gave you earlier) */
+  </style>
+</head>
+<body>
+  <div class="kasparex-widget-container">
+
+    <div class="widget-header">
+      <h1>🎨 Kasparex UI Showcase</h1>
+      <p>Preview all core UI components in one dApp layout.</p>
+    </div>
+
+    <!-- Buttons -->
+    <h2 class="mt-4 mb-2">Buttons</h2>
+    <div class="flex gap-2">
+      <button>Primary Button</button>
+      <button class="btn-outline">Outline Button</button>
+      <button disabled>Disabled</button>
+    </div>
+
+    <!-- Tags -->
+    <h2 class="mt-4 mb-2">Tags / Filters</h2>
+    <div class="flex gap-1 flex-wrap">
+      <div class="tag">💡 General</div>
+      <div class="tag">🧰 Tools</div>
+      <div class="tag">🎮 Games</div>
+      <div class="tag">🚀 Airdrops</div>
+    </div>
+
+    <!-- Alert Boxes -->
+    <h2 class="mt-4 mb-2">Alerts</h2>
+    <div class="alert">ℹ️ This is a neutral info alert.</div>
+    <div class="alert alert-success">✅ Success! Your action was processed.</div>
+    <div class="alert alert-error">❌ Error! Something went wrong.</div>
+    <div class="alert alert-info">📢 Info alert: don't forget to subscribe!</div>
+
+    <!-- Card Box -->
+    <h2 class="mt-4 mb-2">Card Example</h2>
+    <div class="card">
+      <div class="flex justify-between items-center mb-2">
+        <span class="tag">📦 Example Widget</span>
+        <span class="tag tag-primary">Active</span>
+      </div>
+      <p>This card demonstrates how a widget or listing might appear. You can add icons, buttons, links, etc. inside.</p>
+      <div class="flex gap-2 mt-3">
+        <button>LAUNCH</button>
+        <button class="btn-outline">DEV GROUP</button>
+      </div>
+    </div>
+
+    <!-- Input + Form -->
+    <h2 class="mt-4 mb-2">Inputs</h2>
+    <input type="text" placeholder="Enter some text">
+    <input type="number" placeholder="Enter a number">
+    <textarea rows="3" placeholder="Enter a longer description..."></textarea>
+
+    <!-- Loader -->
+    <h2 class="mt-4 mb-2">Loader</h2>
+    <div class="loader-container" style="position: static;">
+      <span class="spinner"></span>
+      <span>Loading data...</span>
+    </div>
+
+    <!-- Dots Loader -->
+    <h2 class="mt-4 mb-2">Dots Loader</h2>
+    <p><span class="dots-loader"></span> Please wait...</p>
+
+  </div>
+</body>
+</html>
