@@ -223,39 +223,17 @@ textarea {
 .k-table td.status-diamond    { color: #26a69a; font-weight: bold; }
 
 /* Utility Classes */
-.flex {
-  display: flex;
-}
-.flex-wrap {
-  flex-wrap: wrap;
-}
-.justify-between {
-  justify-content: space-between;
-}
-.justify-end {
-  justify-content: flex-end;
-}
-.items-center {
-  align-items: center;
-}
-.gap-1 {
-  gap: 0.5rem;
-}
-.gap-2 {
-  gap: 1rem;
-}
-.mb-2 {
-  margin-bottom: 0.75rem;
-}
-.mb-4 {
-  margin-bottom: 1.5rem;
-}
-.mt-3 {
-  margin-top: 1rem;
-}
-.mt-4 {
-  margin-top: 2rem;
-}
+.flex { display: flex; }
+.flex-wrap { flex-wrap: wrap; }
+.justify-between { justify-content: space-between; }
+.justify-end { justify-content: flex-end; }
+.items-center { align-items: center; }
+.gap-1 { gap: 0.5rem; }
+.gap-2 { gap: 1rem; }
+.mb-2 { margin-bottom: 0.75rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 2rem; }
 
 /* Loaders */
 .loader-container {
@@ -277,8 +255,6 @@ textarea {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-
-/* Dots Loader */
 .dots-loader::after {
   content: '.';
   animation: dots 1.2s steps(5, end) infinite;
@@ -365,7 +341,7 @@ body.dark-theme ::-webkit-scrollbar-thumb {
   background-color: #555;
 }
 
-/* Placeholder Color Fix */
+/* Placeholder Fix */
 input::placeholder,
 textarea::placeholder {
   color: #000;
