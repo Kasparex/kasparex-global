@@ -1,151 +1,142 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kasparex dApp Template (Universal Top Bar)</title>
-  <link rel="stylesheet" href="kasparex-style.css">
+  <title>🎨 Kasparex UI Showcase</title>
+  <link rel="stylesheet" href="kasparex-style.css" />
   <style>
     body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      font-family: 'Madefor', sans-serif;
+      background: #f4f7f9;
       padding: 2rem;
-      background-color: var(--background-color);
-      color: var(--text-color);
+      color: #111;
     }
-
-    .kasparex-panel,
-    .kasparex-widget-container {
-      max-width: 800px;
-      width: 100%;
+    section {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
       margin-bottom: 2rem;
-      background: var(--widget-background);
-      border-radius: var(--border-radius);
-      padding: 2rem;
-      box-shadow: 0 10px 25px -5px var(--shadow-color);
-      box-sizing: border-box;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
-
-    .top-universal-bar {
-      max-width: 800px;
-      width: 100%;
+    h2 {
+      margin-top: 0;
+      color: #02ABB8;
+    }
+    .section-title {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .icon-button-group {
-      display: flex;
       gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .icon-button {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: white;
-      border: none;
-      box-shadow: 0 2px 6px var(--shadow-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 1.1rem;
-      transition: background-color 0.2s ease;
-    }
-
-    .icon-button:hover {
-      background-color: #E6FFFC;
-    }
-
-    .popup-panel {
-      display: none;
-      position: absolute;
-      top: 70px;
-      left: 20px;
-      background: var(--widget-background);
-      border: 1px solid var(--border-color);
-      padding: 1rem;
-      border-radius: var(--border-radius);
-      box-shadow: 0 4px 16px var(--shadow-color);
-      max-width: 300px;
-      z-index: 999;
     }
   </style>
 </head>
 <body>
 
-  <!-- ✅ UNIVERSAL TOP TOOLBAR -->
-  <div class="top-universal-bar">
-    <div class="icon-button-group">
-      <button class="icon-button" onclick="togglePopup('info-popup')" title="Widget Info">ℹ️</button>
-      <button class="icon-button" onclick="togglePopup('settings-popup')" title="Settings">⚙️</button>
-      <button class="icon-button" onclick="togglePopup('dashboard-popup')" title="Dashboard">📊</button>
-      <button class="icon-button" onclick="togglePopup('faq-popup')" title="FAQ">❓</button>
-      <button class="icon-button" onclick="togglePopup('links-popup')" title="Links">🔗</button>
-      <!-- ✅ Wallet Connect Panel -->
-      <div id="wallet-container"></div>
+  <h1>🎨 Kasparex UI Components</h1>
+
+  <section>
+    <div class="section-title"><h2>🔘 Buttons</h2></div>
+    <button>Primary Button</button>
+    <button class="btn-outline">Outline Button</button>
+  </section>
+
+  <section>
+    <div class="section-title"><h2>🏷️ Tags / Filters</h2></div>
+    <span class="tag">Tag</span>
+    <span class="tag tag-primary">Primary Tag</span>
+  </section>
+
+  <section>
+    <div class="section-title"><h2>🧾 Card Example</h2></div>
+    <div class="card">
+      <h3>Card Title</h3>
+      <p>This is a card with content inside. It uses Kasparex standard styling.</p>
+      <span class="tag">Alpha</span>
+      <span class="tag">Beta</span>
     </div>
-    <div id="theme-container"></div>
-  </div>
+  </section>
 
-  <!-- ✅ POPUP EXAMPLES -->
-  <div class="popup-panel" id="info-popup">ℹ️ <strong>Kasparex dApp:</strong> This widget uses Kaspa smart contracts.</div>
-  <div class="popup-panel" id="settings-popup">⚙️ <strong>Settings:</strong> Here you can customize widget behavior.</div>
-  <div class="popup-panel" id="dashboard-popup">📊 <strong>Wallet Dashboard:</strong> See address & recent actions.</div>
-  <div class="popup-panel" id="faq-popup">❓ <strong>FAQ:</strong> Answers to common questions.</div>
-  <div class="popup-panel" id="links-popup">🔗 <strong>Links:</strong> View GitHub, docs, dev groups.</div>
+  <section>
+    <div class="section-title"><h2>⚠️ Alert Boxes</h2></div>
+    <div class="alert">Standard Alert</div>
+    <div class="alert alert-success">Success Alert</div>
+    <div class="alert alert-error">Error Alert</div>
+    <div class="alert alert-info">Info Alert</div>
+  </section>
 
-  <!-- ✅ Main Widget -->
-  <div class="kasparex-widget-container">
-    <div class="widget-header">
-      <h1>🚀 Your dApp Goes Here</h1>
-      <p>Build utility with Kaspa and Krex infrastructure</p>
+  <section>
+    <div class="section-title"><h2>📩 Modal Popup</h2></div>
+    <div class="modal">
+      <h3>Example Modal</h3>
+      <p>This is a sample modal for demo purposes.</p>
+      <div class="flex gap-2">
+        <button>Confirm</button>
+        <button class="btn-outline">Cancel</button>
+      </div>
     </div>
-    <p>This is your main interactive widget space.</p>
-  </div>
+  </section>
 
-  <!-- ✅ Guide Panel -->
-  <div class="kasparex-panel" id="guide-container"></div>
+  <section>
+    <div class="section-title"><h2>📊 Table (k-table)</h2></div>
+    <table class="k-table">
+      <thead>
+        <tr>
+          <th>Wallet</th>
+          <th>Received</th>
+          <th>Sent</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>kaspa:xyz...</td>
+          <td>1,200</td>
+          <td>900</td>
+          <td class="status-ultra-jeet">🔴 Ultra Jeet</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
-  <!-- ✅ Embed Panel -->
-  <div class="kasparex-panel" id="embed-container"></div>
+  <section>
+    <div class="section-title"><h2>📎 Pill Badges</h2></div>
+    <span class="pill-badge">Active</span>
+    <span class="pill-badge gray">Disabled</span>
+  </section>
 
-  <!-- ✅ Inject Modules -->
-  <script type="module">
-    import {
-      initThemeSwitcher,
-      initWallet,
-      initEmbed,
-      initGuide
-    } from './kasparex-modules.js';
+  <section>
+    <div class="section-title"><h2>📈 Mini Stat Card</h2></div>
+    <div class="stat-card">
+      <h3>42K</h3>
+      <span>Monthly Views</span>
+    </div>
+  </section>
 
-    initThemeSwitcher("theme-container");
-    initWallet("wallet-container");
-    initEmbed("embed-container");
-    initGuide("guide-container");
-  </script>
+  <section>
+    <div class="section-title"><h2>🔁 Progress Bar</h2></div>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" style="width: 65%;"></div>
+    </div>
+  </section>
 
-  <!-- ✅ Popup Handling -->
-  <script>
-    function togglePopup(id) {
-      document.querySelectorAll('.popup-panel').forEach(p => {
-        if (p.id === id) {
-          p.style.display = (p.style.display === 'block') ? 'none' : 'block';
-        } else {
-          p.style.display = 'none';
-        }
-      });
-    }
+  <section>
+    <div class="section-title"><h2>💬 Tooltip</h2></div>
+    <span class="tooltip" data-tooltip="I’m a tooltip!">Hover over me</span>
+  </section>
 
-    document.addEventListener('click', (e) => {
-      if (!e.target.classList.contains('icon-button')) {
-        document.querySelectorAll('.popup-panel').forEach(p => p.style.display = 'none');
-      }
-    });
-  </script>
+  <section>
+    <div class="section-title"><h2>📣 Toast Notification</h2></div>
+    <div class="toast">This is a toast notification</div>
+  </section>
+
+  <section>
+    <div class="section-title"><h2>📑 Nav Pills</h2></div>
+    <div class="nav-pills">
+      <div class="nav-pill active">Overview</div>
+      <div class="nav-pill">Stats</div>
+      <div class="nav-pill">Activity</div>
+    </div>
+  </section>
+
 </body>
 </html>
