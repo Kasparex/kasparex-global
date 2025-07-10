@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kasparex dApp Layout</title>
+  <title>Kasparex dApp Template (Universal Top Bar)</title>
   <link rel="stylesheet" href="kasparex-style.css">
   <style>
     body {
@@ -27,34 +27,57 @@
       box-sizing: border-box;
     }
 
-    .top-controls {
-      display: grid;
-      grid-template-columns: 1fr auto auto;
-      width: 100%;
+    .top-universal-bar {
       max-width: 800px;
-      margin-bottom: 2rem;
-      gap: 1rem;
-      align-items: center;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
     }
 
-    .panel-group {
+    .icon-button {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: white;
+      border: none;
+      box-shadow: 0 2px 6px var(--shadow-color);
       display: flex;
-      flex-direction: column;
-      width: 100%;
-      max-width: 800px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.2s ease;
+    }
+
+    .icon-button:hover {
+      background-color: #E6FFFC;
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Controls with 3 columns: Token Selector, Theme, Wallet -->
-  <div class="kasparex-panel top-controls">
+  <!-- ✅ UNIVERSAL TOP TOOLBAR -->
+  <div class="top-universal-bar">
+    <button class="icon-button" title="Widget Info">ℹ️</button>
+    <button class="icon-button" title="Settings">⚙️</button>
+    <button class="icon-button" title="Theme">🌓</button>
+    <button class="icon-button" title="Connect Wallet">🔌</button>
+    <button class="icon-button" title="Dashboard">📊</button>
+    <button class="icon-button" title="FAQ">❓</button>
+    <button class="icon-button" title="Links">🔗</button>
+  </div>
+
+  <!-- ✅ Token + Theme + Wallet Panel -->
+  <div class="kasparex-panel" style="display: grid; grid-template-columns: 1fr auto auto; gap: 1rem; align-items: center;">
     <div id="token-selector-container"></div>
     <div id="theme-container"></div>
     <div id="wallet-container"></div>
   </div>
 
-  <!-- Main dApp Panel -->
+  <!-- ✅ Main Widget -->
   <div class="kasparex-widget-container">
     <div class="widget-header">
       <h1>🚀 Your dApp Goes Here</h1>
@@ -63,12 +86,13 @@
     <p>This is your main interactive widget space.</p>
   </div>
 
-  <!-- dApp Guide Panel -->
+  <!-- ✅ Guide Panel -->
   <div class="kasparex-panel" id="guide-container"></div>
 
-  <!-- Embed Panel -->
+  <!-- ✅ Embed Panel -->
   <div class="kasparex-panel" id="embed-container"></div>
 
+  <!-- ✅ Inject Modules -->
   <script type="module">
     import {
       initThemeSwitcher,
