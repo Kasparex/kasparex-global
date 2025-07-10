@@ -388,6 +388,12 @@ body.dark-theme #kasparex-token-selector {
   width: 0;
   height: 0;
 }
+.modal-buttons {
+  display: flex;
+  gap: 10px; /* ✅ Proper spacing */
+  justify-content: flex-end;
+  margin-top: 20px;
+}
 .slider {
   position: absolute;
   cursor: pointer;
