@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kasparex Clean dApp Layout</title>
+  <title>Kasparex dApp Layout</title>
   <link rel="stylesheet" href="kasparex-style.css">
   <style>
     body {
@@ -24,33 +24,32 @@
       border-radius: var(--border-radius);
       padding: 2rem;
       box-shadow: 0 10px 25px -5px var(--shadow-color);
+      box-sizing: border-box;
     }
 
     .top-controls {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: 1fr auto auto;
       width: 100%;
       max-width: 800px;
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
+      gap: 1rem;
+      align-items: center;
     }
 
-    select, textarea {
+    .panel-group {
+      display: flex;
+      flex-direction: column;
       width: 100%;
-      font-size: 1rem;
-      padding: 0.75rem;
-      border-radius: 8px;
-      border: 1px solid var(--border-color);
-    }
-
-    button {
-      margin-top: 1rem;
+      max-width: 800px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Theme + Wallet Row -->
-  <div class="top-controls">
+  <!-- Top Controls with 3 columns: Token Selector, Theme, Wallet -->
+  <div class="kasparex-panel top-controls">
+    <div id="token-selector-container"></div>
     <div id="theme-container"></div>
     <div id="wallet-container"></div>
   </div>
@@ -64,14 +63,11 @@
     <p>This is your main interactive widget space.</p>
   </div>
 
-  <!-- Token Selector -->
-  <div class="kasparex-panel" id="token-selector-container"></div>
+  <!-- dApp Guide Panel -->
+  <div class="kasparex-panel" id="guide-container"></div>
 
   <!-- Embed Panel -->
   <div class="kasparex-panel" id="embed-container"></div>
-
-  <!-- Guide Panel -->
-  <div class="kasparex-panel" id="guide-container"></div>
 
   <script type="module">
     import {
