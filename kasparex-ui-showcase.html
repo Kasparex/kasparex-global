@@ -1,142 +1,142 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Kasparex UI Showcase</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="kasparex-style.css">
+  <meta charset="UTF-8" />
+  <title>🎨 Kasparex UI Showcase</title>
+  <link rel="stylesheet" href="kasparex-style.css" />
+  <style>
+    body {
+      font-family: 'Madefor', sans-serif;
+      background: #f4f7f9;
+      padding: 2rem;
+      color: #111;
+    }
+    section {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    h2 {
+      margin-top: 0;
+      color: #02ABB8;
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  </style>
 </head>
 <body>
-  <div class="kasparex-widget-container">
 
-    <div class="flex justify-end mb-4">
-      
-    <label class="toggle-switch">
-      <input type="checkbox" id="theme-toggle-checkbox">
-      <span class="slider"></span>
-    </label>
-    
-    </div>
+  <h1>🎨 Kasparex UI Components</h1>
 
-    <div class="widget-header">
-      <h1>🎨 Kasparex UI Showcase</h1>
-      <p>Full preview of styled components in one layout.</p>
-    </div>
+  <section>
+    <div class="section-title"><h2>🔘 Buttons</h2></div>
+    <button>Primary Button</button>
+    <button class="btn-outline">Outline Button</button>
+  </section>
 
-    <h2 class="mt-4 mb-2" style="font-size: 1.2rem;">Buttons</h2>
-    <div class="flex gap-2">
-      <button>Primary Button</button>
-      <button class="btn-outline">Outline Button</button>
-      <button disabled>Disabled</button>
-      <button class="icon-button">⚙️</button>
-    </div>
+  <section>
+    <div class="section-title"><h2>🏷️ Tags / Filters</h2></div>
+    <span class="tag">Tag</span>
+    <span class="tag tag-primary">Primary Tag</span>
+  </section>
 
-    <h2 class="mt-4 mb-2" style="font-size: 1.2rem;">Tags</h2>
-    <div class="flex gap-1 flex-wrap">
-      <div class="tag" style="border-radius: 2rem;">⚡ General</div>
-      <div class="tag" style="border-radius: 2rem;">🎮 Games</div>
-      <div class="tag tag-primary" style="border-radius: 2rem;">🚀 Featured</div>
-    </div>
-
-    <h2 class="mt-4 mb-2" style="font-size: 1.2rem;">Alerts</h2>
-    <div class="alert">ℹ️ Info alert</div>
-    <div class="alert alert-success">✅ Success alert</div>
-    <div class="alert alert-error">❌ Error alert</div>
-    <div class="alert alert-info">📢 Tip alert</div>
-
-    <h2 class="mt-4 mb-2" style="font-size: 1.2rem;">Card</h2>
+  <section>
+    <div class="section-title"><h2>🧾 Card Example</h2></div>
     <div class="card">
-      <p>This is a sample card with content inside.</p>
+      <h3>Card Title</h3>
+      <p>This is a card with content inside. It uses Kasparex standard styling.</p>
+      <span class="tag">Alpha</span>
+      <span class="tag">Beta</span>
     </div>
+  </section>
 
-    <h2 class="mt-4 mb-2" style="font-size: 1.2rem;">Inputs & Select</h2>
-    <input type="text" placeholder="Text input">
-    <input type="number" placeholder="Number input">
-    <select>
-      <option>Select option</option>
-      <option>Option 1</option>
-      <option>Option 2</option>
-    </select>
-    <textarea rows="3" placeholder="Textarea"></textarea>
+  <section>
+    <div class="section-title"><h2>⚠️ Alert Boxes</h2></div>
+    <div class="alert">Standard Alert</div>
+    <div class="alert alert-success">Success Alert</div>
+    <div class="alert alert-error">Error Alert</div>
+    <div class="alert alert-info">Info Alert</div>
+  </section>
 
-    <h2 class="mt-4 mb-2" style="font-size: 1.2rem;">Token Selector</h2>
-    <select id="kasparex-token-selector">
-      <option selected disabled>🎯 Select Token</option>
-      <option>KREX</option>
-      <option>SARAH</option>
-      <option>VECTOR</option>
-    </select>
-
-    <h2 class="mt-4 mb-2" style="font-size: 1.2rem;">Tabs</h2>
-    <div class="tabs">
-      <div class="tab active">Tab 1</div>
-      <div class="tab">Tab 2</div>
-      <div class="tab">Tab 3</div>
+  <section>
+    <div class="section-title"><h2>📩 Modal Popup</h2></div>
+    <div class="modal">
+      <h3>Example Modal</h3>
+      <p>This is a sample modal for demo purposes.</p>
+      <div class="flex gap-2">
+        <button>Confirm</button>
+        <button class="btn-outline">Cancel</button>
+      </div>
     </div>
+  </section>
 
-    <h2 class="mt-4 mb-2" style="font-size: 1.2rem;">Loaders</h2>
-    <div class="loader-container" style="position: static;">
-      <span class="spinner"></span>
-      <span>Loading...</span>
+  <section>
+    <div class="section-title"><h2>📊 Table (k-table)</h2></div>
+    <table class="k-table">
+      <thead>
+        <tr>
+          <th>Wallet</th>
+          <th>Received</th>
+          <th>Sent</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>kaspa:xyz...</td>
+          <td>1,200</td>
+          <td>900</td>
+          <td class="status-ultra-jeet">🔴 Ultra Jeet</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-title"><h2>📎 Pill Badges</h2></div>
+    <span class="pill-badge">Active</span>
+    <span class="pill-badge gray">Disabled</span>
+  </section>
+
+  <section>
+    <div class="section-title"><h2>📈 Mini Stat Card</h2></div>
+    <div class="stat-card">
+      <h3>42K</h3>
+      <span>Monthly Views</span>
     </div>
-    <p><span class="dots-loader"></span> Please wait...</p>
+  </section>
 
-  
-    
-    <h2 class="mt-4 mb-2" style="font-size: 1.2rem;">Toggle Switch</h2>
-    
-    <label class="toggle-switch">
-      <input type="checkbox">
-      <span class="slider"></span>
-    </label>
-    
-
-    <h2 class="mt-4 mb-2" style="font-size: 1.2rem;">Cryptic Loader</h2>
-    <div class="cryptic-loader" style="width: 100%"><span id="cryptic-text">kaspa:</span></div>
-
-
-    
-<h2 class="mt-4 mb-2" style="font-size: 1.2rem;">Modal Popup Example</h2>
-<div class="modal">
-  <h3 style="margin-top: 0;">🧩 Widget Modal</h3>
-  <p>This is how a typical dApp modal would appear using the shared Kasparex style.</p>
-  <div class="flex justify-end mt-3">
-    <button class="btn-outline">Cancel</button>
-    <button class="ml-2">Confirm</button>
-  </div>
-</div>
-
-
-    <h2 class="mt-4 mb-2" style="font-size: 1.2rem;">Dividers</h2>
-    <div style="padding: 1rem 0;">
-      <div class="divider"></div>
+  <section>
+    <div class="section-title"><h2>🔁 Progress Bar</h2></div>
+    <div class="progress-bar">
+      <div class="progress-bar-fill" style="width: 65%;"></div>
     </div>
+  </section>
 
-  </div>
+  <section>
+    <div class="section-title"><h2>💬 Tooltip</h2></div>
+    <span class="tooltip" data-tooltip="I’m a tooltip!">Hover over me</span>
+  </section>
 
-  
-<script>
-  const toggleCheckbox = document.getElementById("theme-toggle-checkbox");
-  const body = document.body;
+  <section>
+    <div class="section-title"><h2>📣 Toast Notification</h2></div>
+    <div class="toast">This is a toast notification</div>
+  </section>
 
-  function applyTheme(mode) {
-    if (mode === "dark") {
-      body.classList.add("dark-theme");
-    } else {
-      body.classList.remove("dark-theme");
-    }
-  }
-
-  const savedTheme = localStorage.getItem("kasparex-theme") || "light";
-  applyTheme(savedTheme);
-  toggleCheckbox.checked = savedTheme === "dark";
-
-  toggleCheckbox.addEventListener("change", () => {
-    const newMode = toggleCheckbox.checked ? "dark" : "light";
-    localStorage.setItem("kasparex-theme", newMode);
-    applyTheme(newMode);
-  });
-</script>
+  <section>
+    <div class="section-title"><h2>📑 Nav Pills</h2></div>
+    <div class="nav-pills">
+      <div class="nav-pill active">Overview</div>
+      <div class="nav-pill">Stats</div>
+      <div class="nav-pill">Activity</div>
+    </div>
+  </section>
 
 </body>
 </html>
