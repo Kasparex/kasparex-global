@@ -566,3 +566,138 @@ body.dark-theme .modal {
 .k-table td.status-true-jeet  { color: #fbc02d; font-weight: bold; }     /* 🟡 True Jeet */
 .k-table td.status-mild-jeet  { color: #90a4ae; }                        /* ⚪ Mild Jeet */
 .k-table td.status-diamond    { color: #26a69a; font-weight: bold; }     /* 💎 Diamond Hand */
+
+
+/* ========================================
+   NEW UI COMPONENTS for KASPAREX UI
+   ======================================== */
+
+/* Pill Badge */
+.pill-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  background-color: var(--primary-color);
+  color: white;
+  line-height: 1;
+}
+.pill-badge.gray {
+  background-color: #ccc;
+  color: #000;
+}
+
+/* Mini Stat Card */
+.stat-card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  background-color: var(--widget-background);
+  box-shadow: 0 2px 6px var(--shadow-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.stat-card h3 {
+  font-size: 1.5rem;
+  margin: 0.25rem 0;
+  color: var(--primary-color);
+}
+.stat-card span {
+  font-size: 0.9rem;
+  color: var(--subtle-text-color);
+}
+
+/* Progress Bar */
+.progress-bar {
+  background-color: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+  height: 1rem;
+  margin: 0.5rem 0;
+}
+.progress-bar-fill {
+  background-color: var(--primary-color);
+  height: 100%;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+  cursor: help;
+}
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--text-color);
+  color: var(--widget-background);
+  padding: 0.4rem 0.75rem;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+.tooltip:hover::after {
+  opacity: 1;
+}
+
+/* Toast Notification */
+.toast {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem 1.25rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 10px var(--shadow-color);
+  z-index: 9999;
+  animation: slide-in 0.4s ease;
+}
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Tabs / Nav Pills (Extended) */
+.nav-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.nav-pill {
+  padding: 0.6rem 1rem;
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.nav-pill:hover {
+  background-color: #E6FFFC;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+.nav-pill.active {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
