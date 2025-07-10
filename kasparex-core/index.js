@@ -5,41 +5,60 @@ import { initWalletModule } from './wallet.js';
 import { initTokenSelector } from './token-selector.js';
 import { initDappGuide } from './dapp-guide.js';
 
+function createCollapsiblePanel(id, title, initFunc) {
+  const panel = document.createElement("div");
+  panel.className = "kasparex-panel";
+  panel.style.marginTop = "1rem";
+
+  const toggleBtn = document.createElement("button");
+  toggleBtn.className = "btn-outline";
+  toggleBtn.style.width = "100%";
+  toggleBtn.style.textAlign = "left";
+  toggleBtn.style.fontWeight = "600";
+  toggleBtn.style.borderRadius = "8px";
+  toggleBtn.textContent = `▶ ${title}`;
+  panel.appendChild(toggleBtn);
+
+  const content = document.createElement("div");
+  content.id = id;
+  content.style.display = "none";
+  content.style.paddingTop = "1rem";
+  panel.appendChild(content);
+
+  toggleBtn.addEventListener("click", () => {
+    const isOpen = content.style.display === "block";
+    content.style.display = isOpen ? "none" : "block";
+    toggleBtn.textContent = `${isOpen ? "▶" : "▼"} ${title}`;
+  });
+
+  document.body.appendChild(panel);
+  initFunc(id);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  const wrapper = document.createElement("div");
-  wrapper.className = "kasparex-panel";
-  wrapper.style.maxWidth = "100%";
-  wrapper.style.marginBottom = "2rem";
-  wrapper.style.padding = "1rem 1.5rem";
-  wrapper.style.border = "1px solid var(--border-color)";
-  wrapper.style.borderRadius = "12px";
-  wrapper.style.boxShadow = "0 4px 16px var(--shadow-color)";
-  wrapper.style.display = "flex";
-  wrapper.style.flexWrap = "wrap";
-  wrapper.style.gap = "1rem";
-  wrapper.style.alignItems = "center";
-  wrapper.style.justifyContent = "space-between";
-  wrapper.style.background = "var(--widget-background)";
+  const topPanel = document.createElement("div");
+  topPanel.className = "kasparex-panel";
+  topPanel.style.marginBottom = "1rem";
+  topPanel.style.display = "flex";
+  topPanel.style.justifyContent = "space-between";
+  topPanel.style.gap = "1rem";
+  topPanel.style.flexWrap = "wrap";
 
   const themeContainer = document.createElement("div");
   themeContainer.id = "theme-container";
-  wrapper.appendChild(themeContainer);
 
-  const tokenSelector = document.createElement("div");
-  tokenSelector.id = "token-selector-container";
-  wrapper.appendChild(tokenSelector);
+  const walletContainer = document.createElement("div");
+  walletContainer.id = "wallet-container";
 
-  const walletArea = document.createElement("div");
-  walletArea.id = "wallet-area";
-  walletArea.style.marginLeft = "auto";
-  wrapper.appendChild(walletArea);
+  topPanel.appendChild(themeContainer);
+  topPanel.appendChild(walletContainer);
+  document.body.prepend(topPanel);
 
-  document.body.prepend(wrapper);
+  createCollapsiblePanel("token-selector-container", "🎯 Token Selector", initTokenSelector);
+  createCollapsiblePanel("embed-container", "📦 Embed Widget", initEmbedModule);
+  createCollapsiblePanel("guide-container", "🧭 dApp Guide", initDappGuide);
 
   initThemeSwitcher("theme-container");
-  initTokenSelector("token-selector-container");
-  initWalletModule("wallet-area");
-  initEmbedModule();
+  initWalletModule("wallet-container");
   initNotifications();
-  initDappGuide();
 });
