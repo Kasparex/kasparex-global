@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kasparex dApp Template</title>
+  <link rel="stylesheet" href="kasparex-style.css">
+</head>
+<body>
+
+  <!-- Header Panel: Theme + Wallet -->
+  <div class="kasparex-panel flex justify-between items-center mb-4">
+    <div id="theme-container"></div>
+    <div id="wallet-container"></div>
+  </div>
+
+  <!-- Main dApp Panel -->
+  <div class="kasparex-widget-container mb-4">
+    <div class="widget-header">
+      <h1>🚀 Your dApp Goes Here</h1>
+      <p>Build utility with Kaspa and Krex infrastructure</p>
+    </div>
+    <p>This is your main interactive widget space.</p>
+  </div>
+
+  <!-- Token Selector -->
+  <div class="kasparex-panel" id="token-selector-container"></div>
+
+  <!-- Embed Panel -->
+  <div class="kasparex-panel" id="embed-container"></div>
+
+  <!-- Guide Panel -->
+  <div class="kasparex-panel" id="guide-container"></div>
+
+  <script type="module">
+    import {
+      initThemeSwitcher,
+      initWallet,
+      initTokenSelector,
+      initEmbed,
+      initGuide
+    } from './kasparex-modules.js';
+
+    initThemeSwitcher("theme-container");
+    initWallet("wallet-container");
+    initTokenSelector("token-selector-container");
+    initEmbed("embed-container");
+    initGuide("guide-container");
+  </script>
+</body>
+</html>
