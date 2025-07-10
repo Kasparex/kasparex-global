@@ -42,6 +42,7 @@ body {
   align-items: flex-start;
   min-height: 100vh;
 }
+
 .kasparex-widget-container {
   background: var(--widget-background);
   border-radius: var(--border-radius);
@@ -79,6 +80,7 @@ button {
   font-weight: 500;
   transition: background-color 0.2s, transform 0.1s;
 }
+
 button:hover {
   background: var(--primary-hover-color);
 }
@@ -102,19 +104,12 @@ button:disabled {
   border-color: #02ABB8;
 }
 
-/* Modal Button Group Fix */
-.modal .flex.gap-2 button {
-  margin-right: 0.5rem;
-}
-.modal .flex.gap-2 button:last-child {
-  margin-right: 0;
-}
-
 /* Tags / Filters */
 .tag {
-  border-radius: 8px;
+  border-radius: 2rem;
   display: inline-block;
   padding: 0.4rem 0.8rem 0.4rem 0.4rem;
+  border-radius: 8px;
   font-size: 0.95rem;
   background-color: white;
   color: black;
@@ -175,8 +170,7 @@ button:disabled {
 /* Inputs */
 input[type="text"],
 input[type="number"],
-select,
-textarea {
+select, textarea {
   width: 100%;
   padding: 0.75rem 1rem;
   font-size: 1rem;
@@ -188,52 +182,44 @@ textarea {
   color: var(--text-color);
   font-family: var(--font-family);
 }
-select,
-textarea {
+select, textarea {
   resize: vertical;
 }
 
-/* Table Styles (from Jeet Watch) */
-.k-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 16px;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 30, 80, 0.05);
-  background-color: white;
-}
-.k-table th,
-.k-table td {
-  padding: 12px 16px;
-  text-align: left;
-  border-bottom: 1px solid #eee;
-  color: var(--text-color);
-}
-.k-table th {
-  background-color: #f9f9f9;
-  font-weight: 600;
-}
-.k-table tr:hover {
-  background-color: #f0f8fa;
-}
-.k-table td.status-ultra-jeet { color: #e53935; font-weight: bold; }
-.k-table td.status-true-jeet  { color: #fbc02d; font-weight: bold; }
-.k-table td.status-mild-jeet  { color: #90a4ae; }
-.k-table td.status-diamond    { color: #26a69a; font-weight: bold; }
-
 /* Utility Classes */
-.flex { display: flex; }
-.flex-wrap { flex-wrap: wrap; }
-.justify-between { justify-content: space-between; }
-.justify-end { justify-content: flex-end; }
-.items-center { align-items: center; }
-.gap-1 { gap: 0.5rem; }
-.gap-2 { gap: 1rem; }
-.mb-2 { margin-bottom: 0.75rem; }
-.mb-4 { margin-bottom: 1.5rem; }
-.mt-3 { margin-top: 1rem; }
-.mt-4 { margin-top: 2rem; }
+.flex {
+  display: flex;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.items-center {
+  align-items: center;
+}
+.gap-1 {
+  gap: 0.5rem;
+}
+.gap-2 {
+  gap: 1rem;
+}
+.mb-2 {
+  margin-bottom: 0.75rem;
+}
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+.mt-3 {
+  margin-top: 1rem;
+}
+.mt-4 {
+  margin-top: 2rem;
+}
 
 /* Loaders */
 .loader-container {
@@ -255,6 +241,8 @@ textarea {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/* Dots Loader */
 .dots-loader::after {
   content: '.';
   animation: dots 1.2s steps(5, end) infinite;
@@ -266,11 +254,127 @@ textarea {
   80%, 100% { content: ''; }
 }
 
+/* Responsive */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+  .kasparex-widget-container {
+    padding: 1.25rem;
+  }
+  .flex {
+    flex-direction: column;
+  }
+}
+
+
+/* Icon Buttons */
+.icon-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: white;
+  box-shadow: 0 2px 6px var(--shadow-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.icon-button:hover {
+  background-color: #E6FFFC;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+.tab {
+  padding: 0.75rem 1.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.tab.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+.tab:hover {
+  background-color: #E6FFFC;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Dark Theme Fixes */
+body.dark-theme .card,
+body.dark-theme .kasparex-widget-container,
+body.dark-theme .icon-button,
+body.dark-theme .alert,
+body.dark-theme textarea,
+body.dark-theme input[type="text"],
+body.dark-theme input[type="number"],
+body.dark-theme select,
+body.dark-theme .tab {
+  background-color: var(--widget-background);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+body.dark-theme .tab.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* Specific Dark Mode Patch for Embed Panel or Modal Popups */
+body.dark-theme .embed-modal,
+body.dark-theme #embedModal,
+body.dark-theme .modal,
+body.dark-theme .popup,
+body.dark-theme .kasparex-popup,
+body.dark-theme .kasparex-panel {
+  background-color: var(--widget-background) !important;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+/* Token Selector Fix */
+#kasparex-token-selector {
+  max-width: 300px;
+  min-width: 180px;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: #fff;
+  font-size: 1rem;
+  font-family: var(--font-family);
+  margin: 1rem;
+}
+body.dark-theme #kasparex-token-selector {
+  background: var(--widget-background);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+/* Divider */
+.divider {
+  border-top: 1px dashed #ccc;
+  margin: 1rem 0;
+}
+
+
 /* Divider */
 .divider {
   border-top: 2px dashed #bbb;
   margin: 1.5rem 0;
 }
+
+
 
 /* Toggle Switch */
 .toggle-switch {
@@ -314,16 +418,27 @@ textarea {
   transform: translateX(22px);
 }
 
-/* Modal */
-.modal {
-  background: var(--widget-background);
-  border: 1px solid var(--border-color);
-  padding: 2rem;
-  border-radius: var(--border-radius);
-  box-shadow: 0 4px 20px var(--shadow-color);
-  max-width: 500px;
-  margin: 2rem auto;
+
+
+/* Cryptic Code Loader */
+.cryptic-loader {
+  font-family: monospace;
+  font-size: 1rem;
+  color: var(--primary-color);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid var(--primary-color);
+  width: 18ch;
+  animation: typing 2s steps(18), blink 0.75s step-end infinite alternate;
 }
+@keyframes typing {
+  from { width: 0 }
+  to { width: 18ch }
+}
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
 
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
@@ -341,27 +456,113 @@ body.dark-theme ::-webkit-scrollbar-thumb {
   background-color: #555;
 }
 
-/* Placeholder Fix */
+/* Cryptic Code Loader (Monospace, looped text) */
+.cryptic-loader {
+  font-family: monospace;
+  font-size: 1rem;
+  color: var(--primary-color);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid var(--primary-color);
+  width: 20ch;
+  animation: typing 2s steps(20), blink 0.75s step-end infinite alternate;
+}
+@keyframes typing {
+  from { width: 0 }
+  to { width: 20ch }
+}
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.icon-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: white;
+  box-shadow: 0 2px 6px var(--shadow-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.icon-button:hover {
+  background-color: #E6FFFC;
+}
+
 input::placeholder,
-textarea::placeholder {
+textarea::placeholder,
+select {
   color: #000;
 }
 
-/* Dark Theme Fixes */
-body.dark-theme .card,
-body.dark-theme .kasparex-widget-container,
-body.dark-theme .icon-button,
-body.dark-theme .alert,
-body.dark-theme textarea,
-body.dark-theme input[type="text"],
-body.dark-theme input[type="number"],
+body.dark-theme input,
 body.dark-theme select,
-body.dark-theme .tab {
-  background-color: var(--widget-background);
+body.dark-theme textarea {
+  background: var(--widget-background);
   color: var(--text-color);
   border-color: var(--border-color);
 }
-body.dark-theme .tab.active {
-  background: var(--primary-color);
-  color: white;
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder,
+body.dark-theme select {
+  color: var(--text-color);
 }
+
+.modal {
+  background: var(--widget-background);
+  border: 1px solid var(--border-color);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 20px var(--shadow-color);
+  max-width: 500px;
+  margin: 2rem auto;
+}
+body.dark-theme .modal {
+  background: var(--widget-background);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+/* ======================================== */
+/*              TABLES (KREX)              */
+/* For use in dashboards, leaderboards, etc. */
+/* ======================================== */
+
+.k-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 30, 80, 0.05);
+  background-color: white;
+  font-family: var(--font-family);
+}
+
+.k-table th,
+.k-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  color: var(--text-color);
+}
+
+.k-table th {
+  background-color: #f9f9f9;
+  font-weight: 600;
+}
+
+.k-table tr:hover {
+  background-color: #f0f8fa;
+}
+
+/* Optional: Add status-based styling for classification */
+.k-table td.status-ultra-jeet { color: #e53935; font-weight: bold; }     /* 🔴 Ultra Jeet */
+.k-table td.status-true-jeet  { color: #fbc02d; font-weight: bold; }     /* 🟡 True Jeet */
+.k-table td.status-mild-jeet  { color: #90a4ae; }                        /* ⚪ Mild Jeet */
+.k-table td.status-diamond    { color: #26a69a; font-weight: bold; }     /* 💎 Diamond Hand */
