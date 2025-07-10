@@ -1,4 +1,4 @@
-// THEME TOGGLE
+// Theme Switcher
 export function initThemeSwitcher(containerId) {
   const container = document.getElementById(containerId);
   const wrap = document.createElement("label");
@@ -26,65 +26,45 @@ export function initThemeSwitcher(containerId) {
   });
 }
 
-// WALLET
+// Wallet Module
 export function initWallet(containerId) {
   const container = document.getElementById(containerId);
   const btn = document.createElement("button");
-  btn.className = "icon-button";
-  btn.textContent = "🔌";
+  btn.className = "btn-outline";
   btn.title = "Connect Wallet";
 
+  function openDashboard() {
+    togglePopup('dashboard-popup');
+  }
+
   btn.onclick = () => {
-    const addr = prompt("Enter your Kaspa wallet:");
+    const addr = prompt("Enter your Kaspa wallet address:");
     if (addr) {
       localStorage.setItem("kasparex-wallet", addr);
-      btn.textContent = "🔗";
+      updateButton(addr);
+      updateDashboard(addr);
     }
   };
+
+  function updateButton(addr) {
+    btn.textContent = addr.slice(0, 6) + "..." + addr.slice(-4);
+    btn.className = "btn-outline";
+    btn.style.cursor = "pointer";
+    btn.onclick = openDashboard;
+  }
+
+  const saved = localStorage.getItem("kasparex-wallet");
+  if (saved) {
+    updateButton(saved);
+    updateDashboard(saved);
+  } else {
+    btn.textContent = "CONNECT";
+  }
 
   container.appendChild(btn);
 }
 
-// TOKEN SELECTOR
-export function initTokenSelector(containerId) {
-  const tokens = [
-    { name: "KREX", ticker: "KREX", treasury: "kaspa:tkrx123", feeSplit: 70 },
-    { name: "SARAH", ticker: "SARAH", treasury: "kaspa:tsrh456", feeSplit: 60 },
-    { name: "VECTOR", ticker: "VECTOR", treasury: "kaspa:tvct789", feeSplit: 50 }
-  ];
-
-  const container = document.getElementById(containerId);
-  const select = document.createElement("select");
-  select.id = "kasparex-token-selector";
-
-  const def = document.createElement("option");
-  def.text = "🎯 Select Token";
-  def.disabled = true;
-  def.selected = true;
-  select.appendChild(def);
-
-  tokens.forEach(t => {
-    const opt = document.createElement("option");
-    opt.value = t.ticker;
-    opt.textContent = t.name;
-    select.appendChild(opt);
-  });
-
-  select.onchange = () => {
-    const selected = tokens.find(t => t.ticker === select.value);
-    localStorage.setItem("kasparex-selected-token", JSON.stringify(selected));
-  };
-
-  const saved = localStorage.getItem("kasparex-selected-token");
-  if (saved) {
-    const tok = JSON.parse(saved);
-    select.value = tok.ticker;
-  }
-
-  container.appendChild(select);
-}
-
-// EMBED WIDGET
+// Embed
 export function initEmbed(containerId) {
   const container = document.getElementById(containerId);
   const label = document.createElement("p");
@@ -110,15 +90,15 @@ export function initEmbed(containerId) {
   container.appendChild(btn);
 }
 
-// DAPP GUIDE
+// Guide
 export function initGuide(containerId, config) {
   const guide = config || {
     title: "Kaspa Widget",
     what: "This dApp allows you to interact with Kaspa smart contracts.",
-    how: "Connect wallet, select token, take action.",
-    why: "Promotes decentralized interaction & utility.",
-    benefits: ["Low fees", "No gas wars", "Secure"],
-    fees: "0.01 KAS per action"
+    how: "Connect wallet, use the interface, enjoy benefits.",
+    why: "Promotes decentralization and ecosystem utility.",
+    benefits: ["No gas wars", "Ultra fast", "Fully decentralized"],
+    fees: "0.01 KAS per use"
   };
 
   const container = document.getElementById(containerId);
@@ -135,4 +115,24 @@ export function initGuide(containerId, config) {
   `;
 
   container.appendChild(box);
+}
+
+// Dashboard
+function updateDashboard(address) {
+  const dash = document.getElementById("dashboard-popup");
+  if (!dash) return;
+
+  dash.innerHTML = \`
+    📊 <strong>Wallet Dashboard</strong><br><br>
+    <strong>Address:</strong><br>
+    <code style="font-size: 0.85rem;">\${address}</code><br><br>
+    <strong>Balance:</strong> <span id="kas-balance">Loading...</span> KAS<br>
+    <strong>Interactions:</strong> 12 uses<br>
+  \`;
+
+  // Placeholder for mock balance (simulate async)
+  setTimeout(() => {
+    const balance = (Math.random() * 100).toFixed(3);
+    document.getElementById("kas-balance").textContent = balance;
+  }, 500);
 }
