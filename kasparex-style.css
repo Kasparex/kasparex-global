@@ -527,3 +527,42 @@ body.dark-theme .modal {
   color: var(--text-color);
   border-color: var(--border-color);
 }
+
+/* ======================================== */
+/*              TABLES (KREX)              */
+/* For use in dashboards, leaderboards, etc. */
+/* ======================================== */
+
+.k-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 30, 80, 0.05);
+  background-color: white;
+  font-family: var(--font-family);
+}
+
+.k-table th,
+.k-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  color: var(--text-color);
+}
+
+.k-table th {
+  background-color: #f9f9f9;
+  font-weight: 600;
+}
+
+.k-table tr:hover {
+  background-color: #f0f8fa;
+}
+
+/* Optional: Add status-based styling for classification */
+.k-table td.status-ultra-jeet { color: #e53935; font-weight: bold; }     /* 🔴 Ultra Jeet */
+.k-table td.status-true-jeet  { color: #fbc02d; font-weight: bold; }     /* 🟡 True Jeet */
+.k-table td.status-mild-jeet  { color: #90a4ae; }                        /* ⚪ Mild Jeet */
+.k-table td.status-diamond    { color: #26a69a; font-weight: bold; }     /* 💎 Diamond Hand */
