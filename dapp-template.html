@@ -31,9 +31,14 @@
       max-width: 800px;
       width: 100%;
       display: flex;
-      justify-content: flex-end;
-      gap: 0.5rem;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 1.5rem;
+    }
+
+    .icon-button-group {
+      display: flex;
+      gap: 0.5rem;
       flex-wrap: wrap;
     }
 
@@ -55,25 +60,45 @@
     .icon-button:hover {
       background-color: #E6FFFC;
     }
+
+    .popup-panel {
+      display: none;
+      position: absolute;
+      top: 70px;
+      left: 20px;
+      background: var(--widget-background);
+      border: 1px solid var(--border-color);
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 16px var(--shadow-color);
+      max-width: 300px;
+      z-index: 999;
+    }
   </style>
 </head>
 <body>
 
   <!-- ✅ UNIVERSAL TOP TOOLBAR -->
   <div class="top-universal-bar">
-    <button class="icon-button" title="Widget Info">ℹ️</button>
-    <button class="icon-button" title="Settings">⚙️</button>
-    <button class="icon-button" title="Theme">🌓</button>
-    <button class="icon-button" title="Connect Wallet">🔌</button>
-    <button class="icon-button" title="Dashboard">📊</button>
-    <button class="icon-button" title="FAQ">❓</button>
-    <button class="icon-button" title="Links">🔗</button>
+    <div class="icon-button-group">
+      <button class="icon-button" onclick="togglePopup('info-popup')" title="Widget Info">ℹ️</button>
+      <button class="icon-button" onclick="togglePopup('settings-popup')" title="Settings">⚙️</button>
+      <button class="icon-button" onclick="togglePopup('dashboard-popup')" title="Dashboard">📊</button>
+      <button class="icon-button" onclick="togglePopup('faq-popup')" title="FAQ">❓</button>
+      <button class="icon-button" onclick="togglePopup('links-popup')" title="Links">🔗</button>
+    </div>
+    <div id="theme-container"></div>
   </div>
 
-  <!-- ✅ Token + Theme + Wallet Panel -->
-  <div class="kasparex-panel" style="display: grid; grid-template-columns: 1fr auto auto; gap: 1rem; align-items: center;">
-    <div id="token-selector-container"></div>
-    <div id="theme-container"></div>
+  <!-- ✅ POPUP EXAMPLES -->
+  <div class="popup-panel" id="info-popup">ℹ️ <strong>Kasparex dApp:</strong> This widget uses Kaspa smart contracts.</div>
+  <div class="popup-panel" id="settings-popup">⚙️ <strong>Settings:</strong> Here you can customize widget behavior.</div>
+  <div class="popup-panel" id="dashboard-popup">📊 <strong>Wallet Dashboard:</strong> See address & recent actions.</div>
+  <div class="popup-panel" id="faq-popup">❓ <strong>FAQ:</strong> Answers to common questions.</div>
+  <div class="popup-panel" id="links-popup">🔗 <strong>Links:</strong> View GitHub, docs, dev groups.</div>
+
+  <!-- ✅ Wallet Connect Panel -->
+  <div class="kasparex-panel">
     <div id="wallet-container"></div>
   </div>
 
@@ -97,16 +122,33 @@
     import {
       initThemeSwitcher,
       initWallet,
-      initTokenSelector,
       initEmbed,
       initGuide
     } from './kasparex-modules.js';
 
     initThemeSwitcher("theme-container");
     initWallet("wallet-container");
-    initTokenSelector("token-selector-container");
     initEmbed("embed-container");
     initGuide("guide-container");
+  </script>
+
+  <!-- ✅ Popup Handling -->
+  <script>
+    function togglePopup(id) {
+      document.querySelectorAll('.popup-panel').forEach(p => {
+        if (p.id === id) {
+          p.style.display = (p.style.display === 'block') ? 'none' : 'block';
+        } else {
+          p.style.display = 'none';
+        }
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.classList.contains('icon-button')) {
+        document.querySelectorAll('.popup-panel').forEach(p => p.style.display = 'none');
+      }
+    });
   </script>
 </body>
 </html>
