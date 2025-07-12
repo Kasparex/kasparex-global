@@ -86,5 +86,33 @@ Can be extended later for backend API support.
 - Preview UI elements in `kasparex-ui-showcase.html` to stay consistent with Kasparex branding.
 
 ---
+---
+
+## ✅ Contributing
+
+We welcome contributions from the Kaspa builder community!  
+To contribute:
+1. Fork this repo and clone it locally.
+2. Make your changes or additions (new module, UI element, dApp template, etc).
+3. Submit a pull request with a clear description.
+
+Please follow the established coding style and comment important logic.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — feel free to use, modify, and share with credit.  
+See [`LICENSE`](LICENSE) for full details.
+
+---
+
+## 🔗 Useful Links
+
+- 🏠 **Kasparex Website**: [https://kasparex.com](https://kasparex.com)  
+- 📚 **Documentation (Coming Soon)**: [https://docs.kasparex.com](https://docs.kasparex.com)  
+- 💬 **Kasparex Dev Groups**: [https://kasparex.com/groups](https://kasparex.com/groups)
+
+---
 
 Built with ❤️ for the Kaspa ecosystem by the Kasparex team.
